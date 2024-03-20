@@ -1,4 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:movie_app/view_model/cubits/bloc_observer/bloc_observer.dart';
+import 'package:movie_app/view_model/cubits/movie_app_cubit/movie_app_cubit.dart';
 import 'package:movie_app/view_model/data/diohelper.dart';
 import 'package:movie_app/view_model/data/endPoints.dart';
 
@@ -6,11 +9,13 @@ import 'view/screens/splash_screen.dart';
 
 Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
+  Bloc.observer = MyBlocObserver();
   await DioHelper.init();
   runApp(const MovieApp());
-  getAllMovies();
+  // getAllMovies();
 }
-Future<void>getAllMovies()async {
+
+Future<void> getAllMovies() async {
   await DioHelper.get(
       endPoint: '${EndPoints.discover}/${EndPoints.movie}'
   ).then((value) {
@@ -24,10 +29,13 @@ class MovieApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
-      debugShowCheckedModeBanner: false,
-      home: const SplashScreen(),
-      theme: ThemeData.dark(),
+    return BlocProvider(
+      create: (context) => MovieAppCubit(),
+      child: MaterialApp(
+        debugShowCheckedModeBanner: false,
+        home: const SplashScreen(),
+        theme: ThemeData.dark(),
+      ),
     );
   }
 }
