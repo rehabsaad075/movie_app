@@ -1,8 +1,8 @@
 import 'package:animated_splash_screen/animated_splash_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:movie_app/view/screens/home_page_screen.dart';
-import 'package:movie_app/view_model/app_colors.dart';
-import 'package:movie_app/view_model/text_styles.dart';
+import 'package:movie_app/view_model/utils/colors/app_colors.dart';
+import 'package:movie_app/view_model/utils/styles/text_styles.dart';
 
 class SplashScreen extends StatelessWidget {
   const SplashScreen({super.key});

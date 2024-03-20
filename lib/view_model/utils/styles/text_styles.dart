@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:movie_app/view_model/app_colors.dart';
+import 'package:movie_app/view_model/utils/colors/app_colors.dart';
 
 abstract class Styles {
   static const textStyle40=TextStyle(
