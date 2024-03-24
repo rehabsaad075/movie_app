@@ -27,21 +27,22 @@ class HomePageScreen extends StatelessWidget {
             },
             items:  const [
               BottomNavigationBarItem(
-                icon:Icon(AppIcons.homeIcon) ,
-                label: 'الرئيسية',
-              ),
-              BottomNavigationBarItem(
-                  icon:Icon(AppIcons.favIcon) ,
-                  label:'المفضلة'
+                  icon:Icon(AppIcons.searchIcon) ,
+                  label: 'البحث'
               ),
               BottomNavigationBarItem(
                   icon:Icon(AppIcons.watchedIcon) ,
                   label: 'المشاهدة'
               ),
               BottomNavigationBarItem(
-                  icon:Icon(AppIcons.searchIcon) ,
-                  label: 'البحث'
+                  icon:Icon(AppIcons.favIcon) ,
+                  label:'المفضلة'
               ),
+              BottomNavigationBarItem(
+                icon:Icon(AppIcons.homeIcon) ,
+                label: 'الرئيسية',
+              ),
+
             ],
           ),
         );

@@ -11,34 +11,37 @@ class HomeScreen extends StatelessWidget {
     return const Scaffold(
       body: DefaultTabController(
         length: 2,
-        child: Padding(
-          padding: EdgeInsets.symmetric(vertical: 16,horizontal: 6),
-          child: Column(
-            children: [
-              TabBar(
-                  labelColor: AppColors.appColor,
-                  labelStyle: TextStyle(
-                      fontSize: 20
-                  ),
-                  indicatorColor: AppColors.appColor,
-                  tabs: [
-                    Tab(
-                      text: 'الافلام',
+        child: Directionality(
+          textDirection: TextDirection.rtl,
+          child: Padding(
+            padding: EdgeInsets.symmetric(vertical: 16,horizontal: 6),
+            child: Column(
+              children: [
+                TabBar(
+                    labelColor: AppColors.appColor,
+                    labelStyle: TextStyle(
+                        fontSize: 20
                     ),
-                    Tab(
-                      text: 'المسلسلات',
-                    ),
-                  ]
-              ),
-              Expanded(
-                child: TabBarView(
-                    children: [
-                      MovieScreen(),
-                      TvScreen()
+                    indicatorColor: AppColors.appColor,
+                    tabs: [
+                      Tab(
+                        text: 'افلام',
+                      ),
+                      Tab(
+                        text: ' المسلسلات',
+                      ),
                     ]
                 ),
-              )
-            ],
+                Expanded(
+                  child: TabBarView(
+                      children: [
+                        MovieScreen(),
+                        TvScreen(),
+                      ]
+                  ),
+                )
+              ],
+            ),
           ),
         ),
       ),

@@ -11,13 +11,13 @@ class MovieAppCubit extends Cubit<MovieAppStates> {
   static MovieAppCubit get(context)=>BlocProvider.of(context);
 
   List<Widget>screens=const[
-    HomeScreen(),
-    FavoriteScreen(),
+    SearchScreen(),
     WatchedScreen(),
-    SearchScreen()
+    FavoriteScreen(),
+    HomeScreen(),
   ];
 
-  int buttonNavigationBarIndex=0;
+  int buttonNavigationBarIndex=3;
   void changeIndexButtonNavigationBar(int value){
     buttonNavigationBarIndex=value;
     emit(ChangeIndexButtonNavigationBarState());
