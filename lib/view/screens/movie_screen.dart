@@ -4,7 +4,9 @@ import 'package:movie_app/view/componets/sections/all_movies_section.dart';
 import 'package:movie_app/view/componets/sections/rating_movies_section.dart';
 import 'package:movie_app/view/componets/sections/trending_movies_section.dart';
 import 'package:movie_app/view/componets/widget_custom/view_all_button.dart';
+import 'package:movie_app/view/screens/all_movies_screen.dart';
 import 'package:movie_app/view_model/cubits/movie_app_cubit/movie_app_cubit.dart';
+import 'package:movie_app/view_model/utils/functions/navigation_functions.dart';
 import 'package:movie_app/view_model/utils/styles/text_styles.dart';
 
 class MovieScreen extends StatelessWidget {
@@ -41,7 +43,12 @@ class MovieScreen extends StatelessWidget {
             const RatingMoviesSection(),
             const SizedBox(height: 30,),
             ViewAllButton(
-              onPressed: () {},
+              onPressed: () {
+                navigationPushFunction(
+                    context: context,
+                    screen: const AllMoviesScreen()
+                );
+              },
               child: const Text(
                 'عرض جميع الافلام',
                 style: Styles.textStyle20,
