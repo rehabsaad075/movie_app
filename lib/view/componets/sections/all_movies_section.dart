@@ -1,22 +1,35 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:movie_app/models/all_movies_model.dart';
 import 'package:movie_app/view/componets/widget_custom/image_custom.dart';
+import 'package:movie_app/view_model/cubits/movie_app_cubit/movie_app_cubit.dart';
 
 class AllMoviesSection extends StatelessWidget {
   const AllMoviesSection({super.key});
 
   @override
   Widget build(BuildContext context) {
-    return SizedBox(
-      height:MediaQuery.of(context).size.height * .22,
-      child: ListView.separated(
-        physics: const BouncingScrollPhysics(),
-          scrollDirection: Axis.horizontal,
-          itemBuilder: (context,index){
-            return const ImageCustom();
-          },
-          separatorBuilder: (context,index)=>const SizedBox(width:15,),
-          itemCount: 10
-      ),
+    return BlocBuilder<MovieAppCubit, MovieAppStates>(
+      builder: (context, state) {
+        MovieAppCubit cubit = MovieAppCubit.get(context);
+        return SizedBox(
+          height: MediaQuery
+              .of(context)
+              .size
+              .height * .24,
+          child: ListView.separated(
+              physics: const BouncingScrollPhysics(),
+              scrollDirection: Axis.horizontal,
+              itemBuilder: (context, index) {
+                return  ImageCustom(
+                  results: cubit.allMoviesModel?.results?[index]??Results(),
+                );
+              },
+              separatorBuilder: (context, index) => const SizedBox(width: 15,),
+              itemCount: cubit.allMoviesModel?.results?.length??0
+          ),
+        );
+      },
     );
   }
 }

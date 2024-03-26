@@ -4,5 +4,9 @@ class EndPoints{
   static const String discover='discover';
   static const String movie='movie';
   static const String tv='tv';
+  static const String trending='trending';
+  static const String timeWindow='week';
+
+
 
 }

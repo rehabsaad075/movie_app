@@ -12,16 +12,8 @@ Future<void> main() async {
   Bloc.observer = MyBlocObserver();
   await DioHelper.init();
   runApp(const MovieApp());
-  // getAllMovies();
 }
 
-Future<void> getAllMovies() async {
-  await DioHelper.get(
-      endPoint: '${EndPoints.discover}/${EndPoints.movie}'
-  ).then((value) {
-    print(value);
-  });
-}
 
 
 class MovieApp extends StatelessWidget {

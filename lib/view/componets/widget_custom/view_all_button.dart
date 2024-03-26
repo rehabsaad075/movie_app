@@ -4,7 +4,8 @@ import 'package:movie_app/view_model/utils/styles/text_styles.dart';
 
 class ViewAllButton extends StatelessWidget {
   final void Function()? onPressed;
-  const ViewAllButton({super.key, this.onPressed,});
+  final Widget child;
+  const ViewAllButton({super.key, this.onPressed, required this.child,});
 
   @override
   Widget build(BuildContext context) {
@@ -17,10 +18,7 @@ class ViewAllButton extends StatelessWidget {
               borderRadius: BorderRadius.circular(25)
           )
       ),
-      child:const Text(
-          'عرض الجميع',
-        style: Styles.textStyle20,
-      ),
+      child:child,
     );
   }
 }

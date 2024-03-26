@@ -46,7 +46,10 @@ class DioHelper {
       dio?.options.headers={
         "Authorization":"Bearer $token"
       };
-      Response ?response =await dio?.put(endPoints,data:body );
+      Response ?response =await dio?.put(
+          endPoints,
+          data:body,
+      );
       return response!;
     } catch (e) {
       rethrow;
