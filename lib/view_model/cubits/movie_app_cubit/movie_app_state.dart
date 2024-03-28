@@ -17,3 +17,7 @@ class GetTrendingMoviesErrorState extends MovieAppStates {}
 class GetRatingMoviesLoadingState extends MovieAppStates {}
 class GetRatingMoviesSuccessState extends MovieAppStates {}
 class GetRatingMoviesErrorState extends MovieAppStates {}
+
+class GetMoreMoviesLoadingState extends MovieAppStates {}
+class GetMoreMoviesSuccessState extends MovieAppStates {}
+class GetMoreMoviesErrorState extends MovieAppStates {}

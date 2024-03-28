@@ -32,15 +32,11 @@ class MovieAppCubit extends Cubit<MovieAppStates> {
     emit(GetAllMoviesLoadingState());
     await DioHelper.get(
         endPoint: '${EndPoints.discover}/${EndPoints.movie}',
-      parameters: {
-          'language':'ar',
-      }
     ).then((value) {
       allMoviesModel=AllMoviesModel.fromJson(value.data);
       emit(GetAllMoviesSuccessState());
     }).catchError((error){
       if(error is DioException){
-        //print(error.response?.data);
         emit(GetAllMoviesErrorState());
       }
     });
@@ -51,15 +47,11 @@ class MovieAppCubit extends Cubit<MovieAppStates> {
     emit(GetTrendingMoviesLoadingState());
     await DioHelper.get(
         endPoint: '${EndPoints.trending}/${EndPoints.movie}/${EndPoints.timeWindow}',
-        parameters: {
-          'language':'ar',
-        }
     ).then((value) {
       trendingMovies=AllMoviesModel.fromJson(value.data);
       emit(GetTrendingMoviesSuccessState());
     }).catchError((error){
       if(error is DioException){
-       // print(error.response?.data);
         emit(GetTrendingMoviesErrorState());
       }
     });
@@ -71,7 +63,6 @@ class MovieAppCubit extends Cubit<MovieAppStates> {
     await DioHelper.get(
         endPoint: '${EndPoints.discover}/${EndPoints.movie}',
         parameters: {
-          'language':'ar',
           'sort_by':'vote_average.desc'
         }
     ).then((value) {
@@ -79,8 +70,30 @@ class MovieAppCubit extends Cubit<MovieAppStates> {
       emit(GetRatingMoviesSuccessState());
     }).catchError((error){
       if(error is DioException){
-        //print(error.response?.data);
         emit(GetRatingMoviesErrorState());
+      }
+    });
+  }
+
+bool hasMoreResults=true;
+  Future<void> getMoreMovies() async {
+    emit(GetMoreMoviesLoadingState());
+    await DioHelper.get(
+        endPoint: '${EndPoints.discover}/${EndPoints.movie}',
+        parameters: {
+          'page':(allMoviesModel?.page??0)+1
+        }
+    ).then((value) {
+      AllMoviesModel newMoviesModel=AllMoviesModel.fromJson(value.data);
+      allMoviesModel?.page=newMoviesModel.page;
+      allMoviesModel?.results?.addAll(newMoviesModel.results??[]);
+      if(allMoviesModel?.page==allMoviesModel?.totalPages){
+        hasMoreResults=false;
+      }
+      emit(GetMoreMoviesSuccessState());
+    }).catchError((error){
+      if(error is DioException){
+        emit(GetMoreMoviesErrorState());
       }
     });
   }
