@@ -6,8 +6,8 @@ import 'package:movie_app/view/screens/details_screen.dart';
 import 'package:movie_app/view_model/cubits/movie_app_cubit/movie_app_cubit.dart';
 import 'package:movie_app/view_model/utils/functions/navigation_functions.dart';
 
-class AllMoviesSection extends StatelessWidget {
-  const AllMoviesSection({super.key});
+class SimilarMovieSection extends StatelessWidget {
+  const SimilarMovieSection({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -18,7 +18,7 @@ class AllMoviesSection extends StatelessWidget {
           height: MediaQuery
               .of(context)
               .size
-              .height * .24,
+              .height * .21,
           child: ListView.separated(
               physics: const BouncingScrollPhysics(),
               scrollDirection: Axis.horizontal,

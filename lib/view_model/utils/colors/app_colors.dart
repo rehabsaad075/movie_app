@@ -6,8 +6,10 @@ abstract class AppColors{
   static const Color appColor3=Color(0xffE08B1C);
   static const Color whiteColor=Colors.white;
   static const Color errorColor=Colors.red;
+  static const Color white70=Colors.white70;
   static  Color? backColorSplash=Colors.grey[850];
   static  Color? gray=Colors.grey[800];
+
 
 
 }

@@ -16,6 +16,18 @@ abstract class Styles {
 
   static const textStyle20=TextStyle(
     fontSize: 20,
-    color: AppColors.appColor
+    color: AppColors.appColor,
+    height: 1.2
+  );
+
+  static const textStyle30=TextStyle(
+      fontSize: 30,
+    fontFamily: 'Charm',
+  );
+
+  static const textStyle18=TextStyle(
+    fontSize: 18,
+    color: AppColors.appColor,
+    fontWeight: FontWeight.w600
   );
 }

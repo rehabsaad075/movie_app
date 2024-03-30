@@ -7,29 +7,33 @@ import 'package:movie_app/view_model/utils/icons/app_icons.dart';
 
 class ImageCustom extends StatelessWidget {
   final Results results;
-  const ImageCustom({super.key, required this.results});
+  final void Function()? onTap;
+  const ImageCustom({super.key, required this.results, this.onTap});
 
   @override
   Widget build(BuildContext context) {
-    return ClipRRect(
-      borderRadius: BorderRadius.circular(10),
-      child: AspectRatio(
-        aspectRatio: 3.1/4.3,
-        child: CachedNetworkImage(
-          imageUrl: '${EndPoints.imageUrl}${results.posterPath}',
-          fit: BoxFit.fill,
-          placeholder: (context, url) =>
-           Container(
-             color: AppColors.gray,
-           ),
-          errorWidget: (context, url, error) =>
-              Container(
-                color: AppColors.gray,
-                child: const Icon(
-                AppIcons.errorIcon,
-                  color: AppColors.appColor,
+    return InkWell(
+      onTap: onTap,
+      child: ClipRRect(
+        borderRadius: BorderRadius.circular(10),
+        child: AspectRatio(
+          aspectRatio: 3.1/4.3,
+          child: CachedNetworkImage(
+            imageUrl: '${EndPoints.imageUrl}${results.posterPath}',
+            fit: BoxFit.fill,
+            placeholder: (context, url) =>
+             Container(
+               color: AppColors.gray,
+             ),
+            errorWidget: (context, url, error) =>
+                Container(
+                  color: AppColors.gray,
+                  child: const Icon(
+                  AppIcons.errorIcon,
+                    color: AppColors.appColor,
+            ),
+                ),
           ),
-              ),
         ),
       ),
     );

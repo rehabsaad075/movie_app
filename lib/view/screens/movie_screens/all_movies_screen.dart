@@ -3,8 +3,10 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:movie_app/models/all_movies_model.dart';
 import 'package:movie_app/view/componets/widget_custom/image_custom.dart';
 import 'package:movie_app/view/componets/widget_custom/view_all_button.dart';
+import 'package:movie_app/view/screens/details_screen.dart';
 import 'package:movie_app/view_model/cubits/movie_app_cubit/movie_app_cubit.dart';
 import 'package:movie_app/view_model/utils/colors/app_colors.dart';
+import 'package:movie_app/view_model/utils/functions/navigation_functions.dart';
 import 'package:movie_app/view_model/utils/styles/text_styles.dart';
 
 class AllMoviesScreen extends StatelessWidget {
@@ -52,6 +54,12 @@ class AllMoviesScreen extends StatelessWidget {
                       itemBuilder: (context, index) {
                         return ImageCustom(
                           results: cubit.allMoviesModel?.results?[index]??Results(),
+                          onTap: (){
+                            navigationPushFunction(
+                                context: context,
+                                screen: const DetailsScreen()
+                            );
+                          },
                         );
                       },
                       itemCount: cubit.allMoviesModel?.results?.length??0,
