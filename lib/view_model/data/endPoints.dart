@@ -6,7 +6,6 @@ class EndPoints{
   static const String tv='tv';
   static const String trending='trending';
   static const String timeWindow='week';
-
-
+  static const String similar='similar';
 
 }

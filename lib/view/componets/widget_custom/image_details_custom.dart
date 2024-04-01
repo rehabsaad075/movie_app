@@ -1,10 +1,12 @@
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
+import 'package:movie_app/view_model/data/endPoints.dart';
 import 'package:movie_app/view_model/utils/colors/app_colors.dart';
 import 'package:movie_app/view_model/utils/icons/app_icons.dart';
 
 class ImageDetailsCustom extends StatelessWidget {
-  const ImageDetailsCustom({super.key});
+  final String pathImage;
+  const ImageDetailsCustom({super.key, required this.pathImage,});
 
   @override
   Widget build(BuildContext context) {
@@ -13,7 +15,7 @@ class ImageDetailsCustom extends StatelessWidget {
       child: AspectRatio(
         aspectRatio: 2/1.4,
         child: CachedNetworkImage(
-          imageUrl: 'https://image.tmdb.org/t/p/w500/kDp1vUBnMpe8ak4rjgl3cLELqjU.jpg',
+          imageUrl: '${EndPoints.imageUrl}$pathImage',
           fit: BoxFit.fill,
           placeholder: (context, url) =>
               Container(

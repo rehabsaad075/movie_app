@@ -2,17 +2,18 @@ import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:movie_app/models/all_movies_model.dart';
+import 'package:movie_app/models/details_model.dart';
 import 'package:movie_app/view/screens/favorite_screen.dart';
 import 'package:movie_app/view/screens/home_screen.dart';
 import 'package:movie_app/view/screens/search_screen.dart';
 import 'package:movie_app/view/screens/watched_screen.dart';
 import 'package:movie_app/view_model/data/diohelper.dart';
 import 'package:movie_app/view_model/data/endPoints.dart';
-part 'movie_app_state.dart';
+part 'movie_state.dart';
 
-class MovieAppCubit extends Cubit<MovieAppStates> {
-  MovieAppCubit() : super(MovieAppInitialState());
-  static MovieAppCubit get(context)=>BlocProvider.of(context);
+class MovieCubit extends Cubit<MovieStates> {
+  MovieCubit() : super(MovieAppInitialState());
+  static MovieCubit get(context)=>BlocProvider.of(context);
 
   List<Widget>screens=const[
     SearchScreen(),
@@ -94,6 +95,45 @@ bool hasMoreResults=true;
     }).catchError((error){
       if(error is DioException){
         emit(GetMoreMoviesErrorState());
+      }
+    });
+  }
+
+  int currentMovieIndex=0;
+  void changeMovieIndex(int movieIndex){
+    currentMovieIndex=movieIndex;
+    emit(ChangeMovieIndexState());
+  }
+
+  AllMoviesModel? similarMovies;
+  Future<void> getSimilarMovies() async {
+    emit(GetSimilarMoviesLoadingState());
+    await DioHelper.get(
+      endPoint: '${EndPoints.movie}/${allMoviesModel?.results?[currentMovieIndex].id}/${EndPoints.similar}',
+    ).then((value) {
+      similarMovies=AllMoviesModel.fromJson(value.data);
+      emit(GetSimilarMoviesSuccessState());
+    }).catchError((error){
+      if(error is DioException){
+        emit(GetSimilarMoviesErrorState());
+      }
+    });
+  }
+
+  DetailsModel? detailsModel;
+  Future<void> getDetailsMovie() async {
+    emit(GetDetailsMovieLoadingState());
+    await DioHelper.get(
+      endPoint: '${EndPoints.movie}/${allMoviesModel?.results?[currentMovieIndex].id}',
+      parameters: {
+        'language':'ar'
+      }
+    ).then((value) {
+      detailsModel=DetailsModel.fromJson(value.data);
+      emit(GetDetailsMovieSuccessState());
+    }).catchError((error){
+      if(error is DioException){
+        emit(GetDetailsMovieErrorState());
       }
     });
   }

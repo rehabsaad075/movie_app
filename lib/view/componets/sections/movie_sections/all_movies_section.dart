@@ -2,8 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:movie_app/models/all_movies_model.dart';
 import 'package:movie_app/view/componets/widget_custom/image_custom.dart';
-import 'package:movie_app/view/screens/details_screen.dart';
-import 'package:movie_app/view_model/cubits/movie_app_cubit/movie_app_cubit.dart';
+import 'package:movie_app/view/screens/movie_screens/movie_details_screen.dart';
+import 'package:movie_app/view_model/cubits/movie_cubit/movie_cubit.dart';
 import 'package:movie_app/view_model/utils/functions/navigation_functions.dart';
 
 class AllMoviesSection extends StatelessWidget {
@@ -11,9 +11,9 @@ class AllMoviesSection extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return BlocBuilder<MovieAppCubit, MovieAppStates>(
+    return BlocBuilder<MovieCubit, MovieStates>(
       builder: (context, state) {
-        MovieAppCubit cubit = MovieAppCubit.get(context);
+        MovieCubit cubit = MovieCubit.get(context);
         return SizedBox(
           height: MediaQuery
               .of(context)
@@ -26,8 +26,10 @@ class AllMoviesSection extends StatelessWidget {
                 return  ImageCustom(
                   results: cubit.allMoviesModel?.results?[index]??Results(),
                   onTap: (){
-                    navigationPushFunction(context: context,
-                        screen: const DetailsScreen()
+                    cubit.changeMovieIndex(index);
+                    navigationPushFunction(
+                        context: context,
+                        screen: const MovieDetailsScreen()
                     );
                   },
                 );

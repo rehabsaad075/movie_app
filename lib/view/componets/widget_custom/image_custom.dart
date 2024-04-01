@@ -7,8 +7,8 @@ import 'package:movie_app/view_model/utils/icons/app_icons.dart';
 
 class ImageCustom extends StatelessWidget {
   final Results results;
-  final void Function()? onTap;
-  const ImageCustom({super.key, required this.results, this.onTap});
+  final void Function() onTap;
+  const ImageCustom({super.key, required this.results, required this.onTap});
 
   @override
   Widget build(BuildContext context) {

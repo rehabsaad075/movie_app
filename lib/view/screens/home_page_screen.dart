@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:movie_app/view_model/cubits/movie_app_cubit/movie_app_cubit.dart';
+import 'package:movie_app/view_model/cubits/movie_cubit/movie_cubit.dart';
 import 'package:movie_app/view_model/utils/colors/app_colors.dart';
 import 'package:movie_app/view_model/utils/icons/app_icons.dart';
 
@@ -9,9 +9,9 @@ class HomePageScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return BlocBuilder<MovieAppCubit,MovieAppStates>(
+    return BlocBuilder<MovieCubit,MovieStates>(
       builder: (context, state) {
-        MovieAppCubit movieAppCubit=MovieAppCubit.get(context);
+        MovieCubit movieAppCubit=MovieCubit.get(context);
         return Scaffold(
           body: movieAppCubit.screens[movieAppCubit.buttonNavigationBarIndex],
           bottomNavigationBar: BottomNavigationBar(
