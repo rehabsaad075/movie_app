@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:movie_app/view/screens/movie_screens/movie_screen.dart';
-import 'package:movie_app/view/screens/tv_screen.dart';
+import 'package:movie_app/view/screens/tv_screens/tv_screen.dart';
 import 'package:movie_app/view_model/utils/colors/app_colors.dart';
 
 class HomeScreen extends StatelessWidget {

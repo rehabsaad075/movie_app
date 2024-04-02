@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:movie_app/view_model/cubits/bloc_observer/bloc_observer.dart';
+import 'package:movie_app/view_model/cubits/series_cubit/series_cubit.dart';
 import 'package:movie_app/view_model/data/diohelper.dart';
 import 'view/screens/splash_screen.dart';
 import 'view_model/cubits/movie_cubit/movie_cubit.dart';
@@ -19,8 +20,15 @@ class MovieApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return BlocProvider(
-      create: (context) => MovieCubit(),
+    return MultiBlocProvider(
+      providers: [
+        BlocProvider(
+          create: (context) => MovieCubit(),
+        ),
+        BlocProvider(
+          create: (context) => SeriesCubit(),
+        )
+      ],
       child: MaterialApp(
         debugShowCheckedModeBanner: false,
         home: const SplashScreen(),
