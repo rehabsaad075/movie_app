@@ -25,9 +25,19 @@ abstract class Styles {
     fontFamily: 'Charm',
   );
 
+  static const textStyle24=TextStyle(
+    fontSize: 24,
+    fontFamily: 'Charm',
+  );
+
   static const textStyle18=TextStyle(
     fontSize: 18,
     color: AppColors.appColor,
     fontWeight: FontWeight.w600
+  );
+
+  static const textStyle16=TextStyle(
+      fontSize: 16,
+      color: AppColors.appColor,
   );
 }

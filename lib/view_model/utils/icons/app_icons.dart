@@ -6,4 +6,5 @@ abstract class AppIcons{
   static const IconData watchedIcon=Icons.live_tv;
   static const IconData searchIcon=Icons.search;
   static const IconData errorIcon=Icons.error_outline;
+  static const IconData starIcon=Icons.star;
 }
