@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:movie_app/view_model/cubits/app_cubit.dart';
 import 'package:movie_app/view_model/cubits/bloc_observer/bloc_observer.dart';
 import 'package:movie_app/view_model/cubits/series_cubit/series_cubit.dart';
 import 'package:movie_app/view_model/data/diohelper.dart';
@@ -27,6 +28,9 @@ class MovieApp extends StatelessWidget {
         ),
         BlocProvider(
           create: (context) => SeriesCubit(),
+        ),
+        BlocProvider(
+            create:(context) =>AppCubit()
         )
       ],
       child: MaterialApp(

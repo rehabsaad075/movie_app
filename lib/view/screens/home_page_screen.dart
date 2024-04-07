@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:movie_app/view_model/cubits/movie_cubit/movie_cubit.dart';
+import 'package:movie_app/view_model/cubits/app_cubit.dart';
 import 'package:movie_app/view_model/utils/colors/app_colors.dart';
 import 'package:movie_app/view_model/utils/icons/app_icons.dart';
 
@@ -9,11 +9,11 @@ class HomePageScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return BlocBuilder<MovieCubit,MovieStates>(
+    return BlocBuilder<AppCubit,AppState>(
       builder: (context, state) {
-        MovieCubit movieAppCubit=MovieCubit.get(context);
+        AppCubit appCubit=AppCubit.get(context);
         return Scaffold(
-          body: movieAppCubit.screens[movieAppCubit.buttonNavigationBarIndex],
+          body: appCubit.screens[appCubit.buttonNavigationBarIndex],
           bottomNavigationBar: BottomNavigationBar(
             selectedItemColor: AppColors.appColor,
             selectedFontSize: 16,
@@ -21,9 +21,9 @@ class HomePageScreen extends StatelessWidget {
             selectedIconTheme: const IconThemeData(size: 30),
             unselectedItemColor: AppColors.whiteColor,
             type: BottomNavigationBarType.fixed,
-            currentIndex: movieAppCubit.buttonNavigationBarIndex,
+            currentIndex: appCubit.buttonNavigationBarIndex,
             onTap: (int value){
-              movieAppCubit.changeIndexButtonNavigationBar(value);
+              appCubit.changeIndexButtonNavigationBar(value);
             },
             items:  const [
               BottomNavigationBarItem(
