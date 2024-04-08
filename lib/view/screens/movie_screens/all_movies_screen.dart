@@ -23,19 +23,19 @@ class AllMoviesScreen extends StatelessWidget {
           return Directionality(
             textDirection: TextDirection.rtl,
             child: Scaffold(
-              appBar: AppBar(
-                backgroundColor: AppColors.backColorSplash,
-                elevation: 0,
-                titleSpacing: 0,
-                iconTheme: const IconThemeData(
-                  color: AppColors.appColor,
-                  size: 25,
-                ),
-                title: Text(
-                  'جميع الافلام',
-                  style: Styles.textStyle22.copyWith(color: AppColors.appColor),
-                ),
-              ),
+             appBar: AppBar(
+               backgroundColor: AppColors.backColorSplash,
+               elevation: 0,
+               titleSpacing: 0,
+               iconTheme: const IconThemeData(
+                 color: AppColors.appColor,
+                 size: 25,
+               ),
+               title: Text(
+                 'جميع الافلام',
+                 style: Styles.textStyle22.copyWith(color: AppColors.appColor),
+               ),
+             ),
               body: Visibility(
                 visible: state is GetAllMoviesLoadingState,
                 replacement:ListView(
