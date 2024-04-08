@@ -7,5 +7,6 @@ class EndPoints{
   static const String trending='trending';
   static const String timeWindow='week';
   static const String similar='similar';
+  static const String search='search/multi';
 
 }

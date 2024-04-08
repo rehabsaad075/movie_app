@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:movie_app/view_model/cubits/app_cubit.dart';
 import 'package:movie_app/view_model/utils/colors/app_colors.dart';
 import 'package:movie_app/view_model/utils/icons/app_icons.dart';
 
@@ -7,30 +8,33 @@ class SearchBarCustom extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return const SearchBar(
-      padding: MaterialStatePropertyAll(
+    return SearchBar(
+      padding: const MaterialStatePropertyAll(
           EdgeInsets.symmetric(horizontal: 10)
       ),
       hintText: 'البحث عن افلام ومسلسلات',
-      hintStyle: MaterialStatePropertyAll(
+      hintStyle: const MaterialStatePropertyAll(
           TextStyle(
               color: AppColors.white70,
               fontSize: 18
           )
       ),
-      textStyle: MaterialStatePropertyAll(
+      textStyle: const MaterialStatePropertyAll(
           TextStyle(
               color: AppColors.appColor,
               fontSize: 20
           )
       ),
-      trailing:[
+      trailing:const [
         Icon(
           AppIcons.searchIcon,
           color: AppColors.white70,
         ),
       ] ,
-      elevation: MaterialStatePropertyAll(0),
+      elevation: const MaterialStatePropertyAll(0),
+      onChanged: (value){
+        AppCubit.get(context).searchOfResults(movieName: value);
+      },
     );
   }
 }
