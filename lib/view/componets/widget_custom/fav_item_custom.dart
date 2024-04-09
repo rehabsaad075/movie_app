@@ -40,15 +40,15 @@ class FavItemCustom extends StatelessWidget {
               const SizedBox(height: 5,),
                Row(
                 children: [
-                  const Text(
+                   Text(
                       '7.9',
-                      style: Styles.textStyle16
+                      style: Styles.textStyle18.copyWith(fontWeight: FontWeight.normal)
                   ),
                   const SizedBox(width: 3,),
                   const Icon(
                     AppIcons.starIcon,
                     color: AppColors.appColor,
-                    size: 18,
+                    size: 20,
                   ),
                   const SizedBox(width: 130,),
                   IconButton(
@@ -58,7 +58,7 @@ class FavItemCustom extends StatelessWidget {
                     icon: Icon(
                       icon,
                       color: AppColors.appColor,
-                      size: 20,
+                      size: 25,
                     ),
                   ),
                 ],
