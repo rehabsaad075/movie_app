@@ -3,7 +3,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:movie_app/models/all_movies_model.dart';
 import 'package:movie_app/view/componets/widget_custom/searchBar_custom.dart';
 import 'package:movie_app/view/componets/widget_custom/search_item_custom.dart';
-import 'package:movie_app/view_model/cubits/app_cubit.dart';
+import 'package:movie_app/view_model/cubits/app_cubit/app_cubit.dart';
 import 'package:movie_app/view_model/utils/colors/app_colors.dart';
 import 'package:movie_app/view_model/utils/styles/text_styles.dart';
 

@@ -27,6 +27,8 @@ class AllSeriesSection extends StatelessWidget {
                   results: cubit.allSeries?.results?[index]??Results(),
                   onTap: (){
                     cubit.changeSeriesIndex(index);
+                    cubit.getDetailsSeries(seriesModel: cubit.allSeries);
+                    cubit.getSimilarSeries(seriesModel: cubit.allSeries);
                     navigationPushFunction(
                         context: context,
                         screen: const SeriesDetailsScreen()

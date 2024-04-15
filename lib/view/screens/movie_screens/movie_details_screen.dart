@@ -12,112 +12,108 @@ class MovieDetailsScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return BlocProvider.value(
-      value: MovieCubit.get(context)
-        ..getDetailsMovie(),
-      child: BlocBuilder<MovieCubit, MovieStates>(
-        builder: (context, state) {
-          MovieCubit cubit = MovieCubit.get(context);
-          return Directionality(
-            textDirection: TextDirection.rtl,
-            child: Scaffold(
-              body: Visibility(
-                visible: state is GetDetailsMovieLoadingState,
-                replacement: ListView(
-                  padding: const EdgeInsets.symmetric(
-                      vertical: 30, horizontal: 8),
-                  physics: const BouncingScrollPhysics(),
-                  children: [
-                    ImageDetailsCustom(
-                      pathImage: cubit.detailsModel?.posterPath??'',
-                    ),
-                    const SizedBox(
-                      height: 20,
-                    ),
-                    Text(
-                      cubit.detailsModel?.originalTitle ?? '',
-                      style: Styles.textStyle30,
-                      textAlign: TextAlign.center,
-                    ),
-                    const SizedBox(
-                      height: 20,
-                    ),
-                    Text(
-                      cubit.detailsModel?.overview ?? '',
-                      style: Styles.textStyle20.copyWith(
-                          color: AppColors.white70),
-                      //textDirection: TextDirection.rtl,
-                    ),
-                    const SizedBox(
-                      height: 30,
-                    ),
-                    const GenresSection(),
-                    const SizedBox(
-                      height: 30,
-                    ),
-                    Row(
-                      children: [
-                        Text(
-                          'تقييم الفيلم',
-                          style: Styles.textStyle18.copyWith(
-                              color: AppColors.white70,
-                              fontWeight: FontWeight.normal
-                          ),
-                        ),
-                        const SizedBox(width: 15,),
-                        Text(
-                          cubit.detailsModel?.voteAverage?.toStringAsFixed(1).toString()??'',
-                          style: Styles.textStyle18.copyWith(
-                              fontWeight: FontWeight.normal
-                          ),
-                        ),
-                      ],
-                    ),
-                    const SizedBox(
-                      height: 10,
-                    ),
-                    Row(
-                      children: [
-                        Text(
-                          'تاريخ الانتاج',
-                          style: Styles.textStyle18.copyWith(
-                              color: AppColors.white70,
-                              fontWeight: FontWeight.normal
-                          ),
-                        ),
-                        const SizedBox(width: 15,),
-                        Text(
-                          cubit.detailsModel?.releaseDate ?? '',
-                          style: Styles.textStyle18.copyWith(
-                              fontWeight: FontWeight.normal
-                          ),
-                        ),
-                      ],
-                    ),
-                    const SizedBox(
-                      height: 30,
-                    ),
-                    Text(
-                      'افلام قد تعجبك',
-                      style: Styles.textStyle20.copyWith(
-                          color: AppColors.whiteColor),
-                    ),
-                    const SizedBox(
-                      height: 10,
-                    ),
-                    const SimilarMovieSection()
-                  ],
-                ),
-                child: const Center(
-                  child: CircularProgressIndicator(
-                    color: AppColors.appColor,
+    return BlocBuilder<MovieCubit, MovieStates>(
+      builder: (context, state) {
+        MovieCubit cubit = MovieCubit.get(context);
+        return Directionality(
+          textDirection: TextDirection.rtl,
+          child: Scaffold(
+            body: Visibility(
+              visible: state is GetDetailsMovieLoadingState,
+              replacement: ListView(
+                padding: const EdgeInsets.symmetric(
+                    vertical: 30, horizontal: 8),
+                physics: const BouncingScrollPhysics(),
+                children: [
+                  ImageDetailsCustom(
+                    pathImage: cubit.detailsModel?.posterPath??'',
                   ),
+                  const SizedBox(
+                    height: 20,
+                  ),
+                  Text(
+                    cubit.detailsModel?.originalTitle ?? '',
+                    style: Styles.textStyle30,
+                    textAlign: TextAlign.center,
+                  ),
+                  const SizedBox(
+                    height: 20,
+                  ),
+                  Text(
+                    cubit.detailsModel?.overview ?? '',
+                    style: Styles.textStyle20.copyWith(
+                        color: AppColors.white70),
+                    //textDirection: TextDirection.rtl,
+                  ),
+                  const SizedBox(
+                    height: 30,
+                  ),
+                  const GenresSection(),
+                  const SizedBox(
+                    height: 30,
+                  ),
+                  Row(
+                    children: [
+                      Text(
+                        'تقييم الفيلم',
+                        style: Styles.textStyle18.copyWith(
+                            color: AppColors.white70,
+                            fontWeight: FontWeight.normal
+                        ),
+                      ),
+                      const SizedBox(width: 15,),
+                      Text(
+                        cubit.detailsModel?.voteAverage?.toStringAsFixed(1).toString()??'',
+                        style: Styles.textStyle18.copyWith(
+                            fontWeight: FontWeight.normal
+                        ),
+                      ),
+                    ],
+                  ),
+                  const SizedBox(
+                    height: 10,
+                  ),
+                  Row(
+                    children: [
+                      Text(
+                        'تاريخ الانتاج',
+                        style: Styles.textStyle18.copyWith(
+                            color: AppColors.white70,
+                            fontWeight: FontWeight.normal
+                        ),
+                      ),
+                      const SizedBox(width: 15,),
+                      Text(
+                        cubit.detailsModel?.releaseDate ?? '',
+                        style: Styles.textStyle18.copyWith(
+                            fontWeight: FontWeight.normal
+                        ),
+                      ),
+                    ],
+                  ),
+                  const SizedBox(
+                    height: 30,
+                  ),
+                  Text(
+                    'افلام قد تعجبك',
+                    style: Styles.textStyle20.copyWith(
+                        color: AppColors.whiteColor),
+                  ),
+                  const SizedBox(
+                    height: 10,
+                  ),
+                  const SimilarMovieSection()
+                ],
+              ),
+              child: const Center(
+                child: CircularProgressIndicator(
+                  color: AppColors.appColor,
                 ),
               ),
             ),
-          );
-        },
-      ),
+          ),
+        );
+      },
     );
   }
 }

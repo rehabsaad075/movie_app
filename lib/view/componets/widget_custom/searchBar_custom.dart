@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:movie_app/view_model/cubits/app_cubit.dart';
+import 'package:movie_app/view_model/cubits/app_cubit/app_cubit.dart';
 import 'package:movie_app/view_model/utils/colors/app_colors.dart';
 import 'package:movie_app/view_model/utils/icons/app_icons.dart';
 

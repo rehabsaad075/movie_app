@@ -27,6 +27,8 @@ class RatingMoviesSection extends StatelessWidget {
                   results: cubit.ratingMoviesModel?.results?[index]?? Results(),
                   onTap: () {
                     cubit.changeMovieIndex(index);
+                    cubit.getDetailsMovie(movieId: cubit.ratingMoviesModel);
+                    cubit.getSimilarMovies(movieId: cubit.ratingMoviesModel);
                     navigationPushFunction(
                         context: context,
                         screen: const MovieDetailsScreen()

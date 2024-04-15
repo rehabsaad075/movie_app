@@ -11,39 +11,37 @@ class SimilarMovieSection extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return BlocProvider.value(
-      value: MovieCubit.get(context)
-        ..getSimilarMovies(),
-      child: BlocBuilder<MovieCubit, MovieStates>(
-        builder: (context, state) {
-          MovieCubit cubit = MovieCubit.get(context);
-          return SizedBox(
-            height: MediaQuery
-                .of(context)
-                .size
-                .height * .21,
-            child: ListView.separated(
-                physics: const BouncingScrollPhysics(),
-                scrollDirection: Axis.horizontal,
-                itemBuilder: (context, index) {
-                  return ImageCustom(
-                    results: cubit.similarMovies?.results?[index] ?? Results(),
-                    onTap: () {
-                      cubit.changeMovieIndex(index);
-                      navigationPushFunction(
-                          context: context,
-                          screen: const MovieDetailsScreen()
-                      );
-                    },
-                  );
-                },
-                separatorBuilder: (context, index) =>
-                const SizedBox(width: 15,),
-                itemCount: cubit.similarMovies?.results?.length ?? 0
-            ),
-          );
-        },
-      ),
+    return BlocBuilder<MovieCubit, MovieStates>(
+      builder: (context, state) {
+        MovieCubit cubit = MovieCubit.get(context);
+        return SizedBox(
+          height: MediaQuery
+              .of(context)
+              .size
+              .height * .21,
+          child: ListView.separated(
+              physics: const BouncingScrollPhysics(),
+              scrollDirection: Axis.horizontal,
+              itemBuilder: (context, index) {
+                return ImageCustom(
+                  results: cubit.similarMovies?.results?[index] ?? Results(),
+                  onTap: () {
+                    cubit.changeMovieIndex(index);
+                    cubit.getDetailsMovie(movieId: cubit.similarMovies);
+                    cubit.getSimilarMovies(movieId: cubit.similarMovies);
+                    navigationPushFunction(
+                        context: context,
+                        screen: const MovieDetailsScreen()
+                    );
+                  },
+                );
+              },
+              separatorBuilder: (context, index) =>
+              const SizedBox(width: 15,),
+              itemCount: cubit.similarMovies?.results?.length ?? 0
+          ),
+        );
+      },
     );
   }
 }

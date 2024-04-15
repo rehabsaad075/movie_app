@@ -27,6 +27,8 @@ class TrendingMoviesSection extends StatelessWidget {
                   results: cubit.trendingMovies?.results?[index] ?? Results(),
                   onTap: () {
                     cubit.changeMovieIndex(index);
+                    cubit.getDetailsMovie(movieId: cubit.trendingMovies);
+                    cubit.getSimilarMovies(movieId: cubit.trendingMovies);
                     navigationPushFunction(
                         context: context,
                         screen: const MovieDetailsScreen()

@@ -56,6 +56,8 @@ class AllMoviesScreen extends StatelessWidget {
                           results: cubit.allMoviesModel?.results?[index]??Results(),
                           onTap: (){
                             cubit.changeMovieIndex(index);
+                            cubit.getDetailsMovie(movieId: cubit.allMoviesModel);
+                            cubit.getSimilarMovies(movieId: cubit.allMoviesModel);
                             navigationPushFunction(
                                 context: context,
                                 screen: const MovieDetailsScreen()

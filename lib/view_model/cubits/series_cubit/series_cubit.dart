@@ -88,10 +88,10 @@ class SeriesCubit extends Cubit<SeriesStates> {
   }
 
   AllMoviesModel? similarSeries;
-  Future<void> getSimilarSeries() async {
+  Future<void> getSimilarSeries({AllMoviesModel ?seriesModel}) async {
     emit(GetSimilarSeriesLoadingState());
     await DioHelper.get(
-      endPoint: '${EndPoints.tv}/${allSeries?.results?[currentSeriesIndex].id}/${EndPoints.similar}',
+      endPoint: '${EndPoints.tv}/${seriesModel?.results?[currentSeriesIndex].id}/${EndPoints.similar}',
     ).then((value) {
       similarSeries=AllMoviesModel.fromJson(value.data);
       emit(GetSimilarSeriesSuccessState());
@@ -103,10 +103,10 @@ class SeriesCubit extends Cubit<SeriesStates> {
   }
 
   DetailsModel? detailsModel;
-  Future<void> getDetailsSeries() async {
+  Future<void> getDetailsSeries({AllMoviesModel ?seriesModel}) async {
     emit(GetDetailsSeriesLoadingState());
     await DioHelper.get(
-        endPoint: '${EndPoints.tv}/${allSeries?.results?[currentSeriesIndex].id}',
+        endPoint: '${EndPoints.tv}/${seriesModel?.results?[currentSeriesIndex].id}',
         parameters: {
           'language':'ar'
         }

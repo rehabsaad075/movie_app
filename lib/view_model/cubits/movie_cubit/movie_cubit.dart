@@ -89,10 +89,10 @@ bool hasMoreResults=true;
   }
 
   AllMoviesModel? similarMovies;
-  Future<void> getSimilarMovies() async {
+  Future<void> getSimilarMovies({ AllMoviesModel ?movieId}) async {
     emit(GetSimilarMoviesLoadingState());
     await DioHelper.get(
-      endPoint: '${EndPoints.movie}/${allMoviesModel?.results?[currentMovieIndex].id}/${EndPoints.similar}',
+      endPoint: '${EndPoints.movie}/${movieId?.results?[currentMovieIndex].id}/${EndPoints.similar}',
     ).then((value) {
       similarMovies=AllMoviesModel.fromJson(value.data);
       emit(GetSimilarMoviesSuccessState());
@@ -104,10 +104,10 @@ bool hasMoreResults=true;
   }
 
   DetailsModel? detailsModel;
-  Future<void> getDetailsMovie() async {
+  Future<void> getDetailsMovie({ AllMoviesModel ?movieId}) async {
     emit(GetDetailsMovieLoadingState());
     await DioHelper.get(
-      endPoint: '${EndPoints.movie}/${allMoviesModel?.results?[currentMovieIndex].id}',
+      endPoint: '${EndPoints.movie}/${movieId?.results?[currentMovieIndex].id}',
       parameters: {
         'language':'ar'
       }
