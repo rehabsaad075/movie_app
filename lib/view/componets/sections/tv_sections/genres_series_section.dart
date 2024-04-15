@@ -2,16 +2,16 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:movie_app/models/details_model.dart';
 import 'package:movie_app/view/componets/widget_custom/circleContainer_custom.dart';
-import 'package:movie_app/view_model/cubits/movie_cubit/movie_cubit.dart';
+import 'package:movie_app/view_model/cubits/series_cubit/series_cubit.dart';
 
-class GenresSection extends StatelessWidget {
-  const GenresSection({super.key});
+class GenresSeriesSection extends StatelessWidget {
+  const GenresSeriesSection({super.key});
 
   @override
   Widget build(BuildContext context) {
-    return BlocBuilder<MovieCubit, MovieStates>(
+    return BlocBuilder<SeriesCubit, SeriesStates>(
       builder: (context, state) {
-        MovieCubit cubit = MovieCubit.get(context);
+        SeriesCubit cubit = SeriesCubit.get(context);
         return SizedBox(
           height: 40,
           child: ListView.separated(

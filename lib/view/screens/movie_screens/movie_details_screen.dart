@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:movie_app/view/componets/sections/genres_section.dart';
+import 'package:movie_app/view/componets/sections/movie_sections/genres_movies_section.dart';
 import 'package:movie_app/view/componets/sections/movie_sections/similer_movie_section.dart';
 import 'package:movie_app/view/componets/widget_custom/image_details_custom.dart';
 import 'package:movie_app/view_model/cubits/movie_cubit/movie_cubit.dart';
@@ -48,7 +48,7 @@ class MovieDetailsScreen extends StatelessWidget {
                   const SizedBox(
                     height: 30,
                   ),
-                  const GenresSection(),
+                  const GenresMoviesSection(),
                   const SizedBox(
                     height: 30,
                   ),
