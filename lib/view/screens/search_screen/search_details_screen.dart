@@ -3,7 +3,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:movie_app/view/componets/widget_custom/image_details_custom.dart';
 import 'package:movie_app/view/componets/widget_custom/search/genres_search.dart';
 import 'package:movie_app/view/componets/widget_custom/search/similar_search.dart';
-import 'package:movie_app/view_model/cubits/app_cubit/app_cubit.dart';
+import 'package:movie_app/view_model/cubits/search_cubit/search_cubit.dart';
 import 'package:movie_app/view_model/utils/colors/app_colors.dart';
 import 'package:movie_app/view_model/utils/styles/text_styles.dart';
 
@@ -12,9 +12,9 @@ class SearchDetailsScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return  BlocBuilder<AppCubit, AppState>(
+    return  BlocBuilder<SearchCubit, SearchState>(
       builder: (context, state) {
-        AppCubit cubit = AppCubit.get(context);
+        SearchCubit cubit = SearchCubit.get(context);
         return Directionality(
           textDirection: TextDirection.rtl,
           child: Scaffold(

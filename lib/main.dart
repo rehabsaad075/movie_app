@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:movie_app/view_model/cubits/app_cubit/app_cubit.dart';
 import 'package:movie_app/view_model/cubits/bloc_observer/bloc_observer.dart';
+import 'package:movie_app/view_model/cubits/search_cubit/search_cubit.dart';
 import 'package:movie_app/view_model/cubits/series_cubit/series_cubit.dart';
 import 'package:movie_app/view_model/data/diohelper.dart';
 import 'view/screens/splash_screen.dart';
@@ -31,6 +32,9 @@ class MovieApp extends StatelessWidget {
         ),
         BlocProvider(
             create:(context) =>AppCubit()
+        ),
+        BlocProvider(
+            create:(context) =>SearchCubit()
         )
       ],
       child: MaterialApp(

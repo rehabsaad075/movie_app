@@ -4,7 +4,7 @@ import 'package:movie_app/models/all_movies_model.dart';
 import 'package:movie_app/view/componets/widget_custom/search/searchBar_custom.dart';
 import 'package:movie_app/view/componets/widget_custom/search/search_item_custom.dart';
 import 'package:movie_app/view/screens/search_screen/search_details_screen.dart';
-import 'package:movie_app/view_model/cubits/app_cubit/app_cubit.dart';
+import 'package:movie_app/view_model/cubits/search_cubit/search_cubit.dart';
 import 'package:movie_app/view_model/utils/colors/app_colors.dart';
 import 'package:movie_app/view_model/utils/functions/navigation_functions.dart';
 import 'package:movie_app/view_model/utils/styles/text_styles.dart';
@@ -29,9 +29,9 @@ class SearchScreen extends StatelessWidget {
                     'النتائج',
                     style: Styles.textStyle24,
                   ),
-                  BlocBuilder<AppCubit, AppState>(
+                  BlocBuilder<SearchCubit, SearchState>(
                     builder: (context, state) {
-                      AppCubit appCubit=AppCubit.get(context);
+                      SearchCubit searchCubit=SearchCubit.get(context);
                       if(state is SearchSuccessState){
                         return Expanded(
                           child: ListView.separated(
@@ -40,20 +40,20 @@ class SearchScreen extends StatelessWidget {
                               itemBuilder: (context, index) {
                                 return SearchItemCustom(
                                   onTap: () {
-                                    appCubit.changeIndex(index);
-                                    appCubit.getSimilar();
-                                    appCubit.getDetails();
+                                    searchCubit.changeIndex(index);
+                                    searchCubit.getSimilar();
+                                    searchCubit.getDetails();
                                     navigationPushFunction(
                                         context: context,
                                         screen: const SearchDetailsScreen()
                                     );
                                   },
-                                  results:appCubit.allResults?.results?[index]??Results(),
+                                  results:searchCubit.allResults?.results?[index]??Results(),
                                 );
                               },
                               separatorBuilder: (context,
                                   index) => const SizedBox(height: 15,),
-                              itemCount: appCubit.allResults?.results?.length??0
+                              itemCount: searchCubit.allResults?.results?.length??0
                           ),
                         );
                       }
