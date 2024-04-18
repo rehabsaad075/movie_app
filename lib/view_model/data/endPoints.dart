@@ -10,4 +10,6 @@ class EndPoints{
   static const String search='search/multi';
   static const String account='account';
   static const String favorite='favorite';
+  static const String movies='movies';
+
 }

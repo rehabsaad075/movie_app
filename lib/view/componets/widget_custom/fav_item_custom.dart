@@ -1,39 +1,55 @@
+import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
+import 'package:movie_app/models/all_movies_model.dart';
+import 'package:movie_app/view_model/data/endPoints.dart';
 import 'package:movie_app/view_model/utils/colors/app_colors.dart';
 import 'package:movie_app/view_model/utils/icons/app_icons.dart';
 import 'package:movie_app/view_model/utils/styles/text_styles.dart';
 
 class FavItemCustom extends StatelessWidget {
   final IconData icon;
-  const FavItemCustom({super.key, required this.icon});
+  final Results ?results;
+  const FavItemCustom({super.key, required this.icon,  this.results});
 
   @override
   Widget build(BuildContext context) {
     return Row(
       children: [
-        Container(
-          decoration: BoxDecoration(
-              image:  const DecorationImage(
-                  image: NetworkImage('https://image.tmdb.org/t/p/w500/1E5baAaEse26fej7uHcjOgEE2t2.jpg'),
-                  fit: BoxFit.fill
-              ),
-              borderRadius: BorderRadius.circular(12)
-          ),
-          height: 120,
-          width: 120,
-        ),
+       ClipRRect(
+         borderRadius: BorderRadius.circular(12),
+         child: SizedBox(
+           height: 120,
+           width: 120,
+           child: CachedNetworkImage(
+               imageUrl: '${EndPoints.imageUrl}/${results?.posterPath}',
+             fit: BoxFit.fill,
+             placeholder: (context, url) =>
+                 Container(
+                   color: AppColors.gray,
+                 ),
+             errorWidget: (context, url, error) =>
+                 Container(
+                   color: AppColors.gray,
+                   child: const Icon(
+                     AppIcons.errorIcon,
+                     color: AppColors.appColor,
+                   ),
+                 ),
+           ),
+         ),
+       ),
         const SizedBox(width: 15,),
         Expanded(
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               Text(
-                'trolls',
+                results?.originalTitle??'',
                 style: Styles.textStyle20.copyWith(color: AppColors.whiteColor),
               ),
               const SizedBox(height: 5,),
-              const Text(
-                  'في النسخة الجديدة من فيلم كلاسيكي من الثمانينيات، المقاتل السابق في بطولة القتال النهائي دالتون ، يقبل بوظيفة كحارس في حانة على الطريق في فلوريدا كيز، ليكتشف أن هذه الجنة ليست كما تبدو عليه',
+               Text(
+                results?.overview??'',
                 maxLines: 2,
                 overflow: TextOverflow.ellipsis,
               ),
@@ -41,7 +57,7 @@ class FavItemCustom extends StatelessWidget {
                Row(
                 children: [
                    Text(
-                      '7.9',
+                      results?.voteAverage?.toStringAsFixed(1).toString()??'',
                       style: Styles.textStyle18.copyWith(fontWeight: FontWeight.normal)
                   ),
                   const SizedBox(width: 3,),

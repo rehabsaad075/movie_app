@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:movie_app/view/componets/widget_custom/fav_and_watch_container_custom.dart';
 import 'package:movie_app/view/screens/favotite_screens/fav_movie_screen.dart';
 import 'package:movie_app/view/screens/favotite_screens/fav_series_screen.dart';
+import 'package:movie_app/view_model/cubits/movie_cubit/movie_cubit.dart';
 import 'package:movie_app/view_model/utils/colors/app_colors.dart';
 import 'package:movie_app/view_model/utils/functions/navigation_functions.dart';
 import 'package:movie_app/view_model/utils/styles/text_styles.dart';
@@ -33,6 +34,7 @@ class FavoriteScreen extends StatelessWidget {
                       context: context,
                       screen:const FavMovieScreen() ,
                     );
+                    MovieCubit.get(context).getFavMovie();
                   },
                 ),
                 const SizedBox(height: 15,),

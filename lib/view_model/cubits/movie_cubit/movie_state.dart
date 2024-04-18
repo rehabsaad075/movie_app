@@ -35,3 +35,7 @@ class ChangeMovieIndexState extends MovieStates {}
 class AddFavMovieLoadingState extends MovieStates {}
 class AddFavMovieSuccessState extends MovieStates {}
 class AddFavMovieErrorState extends MovieStates {}
+
+class GetFavMovieLoadingState extends MovieStates {}
+class GetFavMovieSuccessState extends MovieStates {}
+class GetFavMovieErrorState extends MovieStates {}

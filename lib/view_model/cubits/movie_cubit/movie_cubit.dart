@@ -140,4 +140,22 @@ bool hasMoreResults=true;
       }
     });
   }
+
+  AllMoviesModel ?favMovie;
+  Future<void>getFavMovie()async {
+    emit(GetFavMovieLoadingState());
+    await DioHelper.get(
+        endPoint: '${EndPoints.account}/21091525/${EndPoints.favorite}/${EndPoints.movies}',
+      parameters: {
+        'language':'ar'
+      }
+    ).then((value) {
+      favMovie=AllMoviesModel.fromJson(value.data);
+      emit(GetFavMovieSuccessState());
+    }).catchError((error){
+      if(error is DioException){
+        emit(GetFavMovieErrorState());
+      }
+    });
+  }
 }
