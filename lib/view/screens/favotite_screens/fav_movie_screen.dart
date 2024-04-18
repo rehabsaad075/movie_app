@@ -29,7 +29,7 @@ class FavMovieScreen extends StatelessWidget {
           builder: (context, state) {
             MovieCubit movieCubit=MovieCubit.get(context);
             return Visibility(
-              visible: movieCubit.favMovie?.results?.isNotEmpty??true,
+              visible: movieCubit.watchedMovie?.results?.isNotEmpty??true,
               replacement: const Center(
                   child: Text(
                       'لا توجد افلام مفضلة,قم باضافة الافلام المفضلة لديك',

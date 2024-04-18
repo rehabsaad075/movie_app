@@ -158,4 +158,41 @@ bool hasMoreResults=true;
       }
     });
   }
+
+  Future<void> addWatchedMovie()async {
+    emit(AddWatchedMovieLoadingState());
+    await DioHelper.post(
+        endPoint: '${EndPoints.account}/21091525/${EndPoints.watchList}',
+        body: {
+          'media_type':'movie',
+          'media_id':detailsMovie?.id,
+          'watchlist':true
+        }
+    ).then((value) {
+      emit(AddWatchedMovieSuccessState());
+      showToast(msg: 'تم اضافة هذا الفيلم الى قائمة المشاهدات');
+    }).catchError((error){
+      if(error is DioException){
+        emit(AddWatchedMovieErrorState());
+      }
+    });
+  }
+
+  AllMoviesModel ?watchedMovie;
+  Future<void>getWatchedMovie()async {
+    emit(GetWatchedMovieLoadingState());
+    await DioHelper.get(
+        endPoint: '${EndPoints.account}/21091525/${EndPoints.watchList}/${EndPoints.movies}',
+        parameters: {
+          'language':'ar'
+        }
+    ).then((value) {
+      watchedMovie=AllMoviesModel.fromJson(value.data);
+      emit(GetWatchedMovieSuccessState());
+    }).catchError((error){
+      if(error is DioException){
+        emit(GetWatchedMovieErrorState());
+      }
+    });
+  }
 }

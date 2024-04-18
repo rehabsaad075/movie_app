@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:movie_app/view/componets/widget_custom/fav_and_watch_container_custom.dart';
 import 'package:movie_app/view/screens/watched_screens/watched_movie_screen.dart';
 import 'package:movie_app/view/screens/watched_screens/watched_series_screen.dart';
+import 'package:movie_app/view_model/cubits/movie_cubit/movie_cubit.dart';
 import 'package:movie_app/view_model/utils/colors/app_colors.dart';
 import 'package:movie_app/view_model/utils/functions/navigation_functions.dart';
 import 'package:movie_app/view_model/utils/styles/text_styles.dart';
@@ -33,6 +34,7 @@ class WatchedScreen extends StatelessWidget {
                       context: context,
                       screen:const WatchedMovieScreen() ,
                     );
+                    MovieCubit.get(context).getWatchedMovie();
                   },
                 ),
                 const SizedBox(height: 15,),

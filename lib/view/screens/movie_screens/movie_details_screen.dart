@@ -99,7 +99,9 @@ class MovieDetailsScreen extends StatelessWidget {
                     onFavPressed: (){
                       cubit.addFavMovie();
                     },
-                    onWatchPressed: (){},
+                    onWatchPressed: (){
+                      cubit.addWatchedMovie();
+                    },
                   ),
                   const SizedBox(
                     height: 30,
