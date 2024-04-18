@@ -27,13 +27,13 @@ class SeriesDetailsScreen extends StatelessWidget {
                 physics: const BouncingScrollPhysics(),
                 children: [
                   ImageDetailsCustom(
-                    pathImage: cubit.detailsModel?.posterPath??'',
+                    pathImage: cubit.detailsSeries?.posterPath??'',
                   ),
                   const SizedBox(
                     height: 20,
                   ),
                   Text(
-                    cubit.detailsModel?.originalTitle ?? '',
+                    cubit.detailsSeries?.originalTitle ?? '',
                     style: Styles.textStyle30,
                     textAlign: TextAlign.center,
                   ),
@@ -41,7 +41,7 @@ class SeriesDetailsScreen extends StatelessWidget {
                     height: 20,
                   ),
                   Text(
-                    cubit.detailsModel?.overview ?? '',
+                    cubit.detailsSeries?.overview ?? '',
                     style: Styles.textStyle20.copyWith(
                         color: AppColors.white70),
                     //textDirection: TextDirection.rtl,
@@ -64,7 +64,7 @@ class SeriesDetailsScreen extends StatelessWidget {
                       ),
                       const SizedBox(width: 15,),
                       Text(
-                        cubit.detailsModel?.voteAverage?.toStringAsFixed(1).toString()??'',
+                        cubit.detailsSeries?.voteAverage?.toStringAsFixed(1).toString()??'',
                         style: Styles.textStyle18.copyWith(
                             fontWeight: FontWeight.normal
                         ),
@@ -85,7 +85,7 @@ class SeriesDetailsScreen extends StatelessWidget {
                       ),
                       const SizedBox(width: 15,),
                       Text(
-                        cubit.detailsModel?.releaseDate ?? '',
+                        cubit.detailsSeries?.releaseDate ?? '',
                         style: Styles.textStyle18.copyWith(
                             fontWeight: FontWeight.normal
                         ),
@@ -96,7 +96,9 @@ class SeriesDetailsScreen extends StatelessWidget {
                     height: 30,
                   ),
                   FavAndWatchItem(
-                    onFavPressed: (){},
+                    onFavPressed: (){
+                      cubit.addFavSeries();
+                    },
                     onWatchPressed: (){},
                   ),
                   const SizedBox(

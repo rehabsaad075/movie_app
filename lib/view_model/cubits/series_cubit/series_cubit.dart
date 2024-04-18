@@ -4,6 +4,7 @@ import 'package:movie_app/models/all_movies_model.dart';
 import 'package:movie_app/models/details_model.dart';
 import 'package:movie_app/view_model/data/diohelper.dart';
 import 'package:movie_app/view_model/data/endPoints.dart';
+import 'package:movie_app/view_model/utils/functions/flutterToastFunctions.dart';
 part 'series_state.dart';
 
 class SeriesCubit extends Cubit<SeriesStates> {
@@ -102,7 +103,7 @@ class SeriesCubit extends Cubit<SeriesStates> {
     });
   }
 
-  DetailsModel? detailsModel;
+  DetailsModel? detailsSeries;
   Future<void> getDetailsSeries({AllMoviesModel ?seriesModel}) async {
     emit(GetDetailsSeriesLoadingState());
     await DioHelper.get(
@@ -111,11 +112,48 @@ class SeriesCubit extends Cubit<SeriesStates> {
           'language':'ar'
         }
     ).then((value) {
-      detailsModel=DetailsModel.fromJson(value.data);
+      detailsSeries=DetailsModel.fromJson(value.data);
       emit(GetDetailsSeriesSuccessState());
     }).catchError((error){
       if(error is DioException){
         emit(GetDetailsSeriesErrorState());
+      }
+    });
+  }
+
+  Future<void> addFavSeries()async {
+    emit(AddFavSeriesLoadingState());
+    await DioHelper.post(
+        endPoint: '${EndPoints.account}/21091525/${EndPoints.favorite}',
+        body: {
+          'media_type':'tv',
+          'media_id':detailsSeries?.id,
+          'favorite':true
+        }
+    ).then((value) {
+      emit(AddFavSeriesSuccessState());
+      showToast(msg: 'تم اضافة هذا المسلسل الى المفضلات');
+    }).catchError((error){
+      if(error is DioException){
+        emit(AddFavSeriesErrorState());
+      }
+    });
+  }
+
+  AllMoviesModel ?favTv;
+  Future<void>getFavTv()async {
+    emit(GetFavSeriesLoadingState());
+    await DioHelper.get(
+        endPoint: '${EndPoints.account}/21091525/${EndPoints.favorite}/${EndPoints.tv}',
+        parameters: {
+          'language':'ar'
+        }
+    ).then((value) {
+      favTv=AllMoviesModel.fromJson(value.data);
+      emit(GetFavSeriesSuccessState());
+    }).catchError((error){
+      if(error is DioException){
+        emit(GetFavSeriesErrorState());
       }
     });
   }

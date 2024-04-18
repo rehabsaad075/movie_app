@@ -30,3 +30,11 @@ class GetDetailsSeriesSuccessState extends SeriesStates {}
 class GetDetailsSeriesErrorState extends SeriesStates {}
 
 class ChangeSeriesIndexState extends SeriesStates {}
+
+class AddFavSeriesLoadingState extends SeriesStates {}
+class AddFavSeriesSuccessState extends SeriesStates {}
+class AddFavSeriesErrorState extends SeriesStates {}
+
+class GetFavSeriesLoadingState extends SeriesStates {}
+class GetFavSeriesSuccessState extends SeriesStates {}
+class GetFavSeriesErrorState extends SeriesStates {}

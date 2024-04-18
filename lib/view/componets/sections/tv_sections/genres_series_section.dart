@@ -19,11 +19,11 @@ class GenresSeriesSection extends StatelessWidget {
               scrollDirection: Axis.horizontal,
               itemBuilder: (context, index) {
                 return CircleContainerCustom(
-                  genres: cubit.detailsModel?.genres?[index]??Genres(),
+                  genres: cubit.detailsSeries?.genres?[index]??Genres(),
                 );
               },
               separatorBuilder: (context, index) => const SizedBox(width: 15,),
-              itemCount: cubit.detailsModel?.genres?.length??0
+              itemCount: cubit.detailsSeries?.genres?.length??0
           ),
         );
       },
