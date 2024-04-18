@@ -3,7 +3,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:movie_app/view/componets/sections/tv_sections/all_series_section.dart';
 import 'package:movie_app/view/componets/sections/tv_sections/rating_series_section.dart';
 import 'package:movie_app/view/componets/sections/tv_sections/trending_series_section.dart';
-import 'package:movie_app/view/componets/widget_custom/view_all_button.dart';
+import 'package:movie_app/view/componets/widget_custom/elvated_button_custom.dart';
 import 'package:movie_app/view/screens/tv_screens/all_series_screen.dart';
 import 'package:movie_app/view_model/cubits/series_cubit/series_cubit.dart';
 import 'package:movie_app/view_model/utils/functions/navigation_functions.dart';
@@ -43,7 +43,7 @@ class TvScreen extends StatelessWidget {
             const SizedBox(height: 10,),
             const RatingSeriesSection(),
             const SizedBox(height: 30,),
-            ViewAllButton(
+            ElevatedButtonCustom(
               onPressed: () {
                 navigationPushFunction(
                     context: context,

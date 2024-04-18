@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:movie_app/models/all_movies_model.dart';
 import 'package:movie_app/view/componets/widget_custom/image_custom.dart';
-import 'package:movie_app/view/componets/widget_custom/view_all_button.dart';
+import 'package:movie_app/view/componets/widget_custom/elvated_button_custom.dart';
 import 'package:movie_app/view/screens/movie_screens/movie_details_screen.dart';
 import 'package:movie_app/view_model/cubits/movie_cubit/movie_cubit.dart';
 import 'package:movie_app/view_model/utils/colors/app_colors.dart';
@@ -76,7 +76,7 @@ class AllMoviesScreen extends StatelessWidget {
                       ),
                       child: Visibility(
                         visible: state is GetMoreMoviesLoadingState,
-                        replacement: ViewAllButton(
+                        replacement: ElevatedButtonCustom(
                           onPressed: () {
                             cubit.getMoreMovies();
                           },

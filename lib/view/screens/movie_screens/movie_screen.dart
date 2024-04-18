@@ -3,7 +3,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:movie_app/view/componets/sections/movie_sections/all_movies_section.dart';
 import 'package:movie_app/view/componets/sections/movie_sections/rating_movies_section.dart';
 import 'package:movie_app/view/componets/sections/movie_sections/trending_movies_section.dart';
-import 'package:movie_app/view/componets/widget_custom/view_all_button.dart';
+import 'package:movie_app/view/componets/widget_custom/elvated_button_custom.dart';
 import 'package:movie_app/view/screens/movie_screens/all_movies_screen.dart';
 import 'package:movie_app/view_model/cubits/movie_cubit/movie_cubit.dart';
 import 'package:movie_app/view_model/utils/functions/navigation_functions.dart';
@@ -43,7 +43,7 @@ class MovieScreen extends StatelessWidget {
             const SizedBox(height: 10,),
             const RatingMoviesSection(),
             const SizedBox(height: 30,),
-            ViewAllButton(
+            ElevatedButtonCustom(
               onPressed: () {
                 navigationPushFunction(
                     context: context,

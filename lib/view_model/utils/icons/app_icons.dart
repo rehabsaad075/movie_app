@@ -8,4 +8,5 @@ abstract class AppIcons{
   static const IconData searchIcon=Icons.search;
   static const IconData errorIcon=Icons.error_outline;
   static const IconData starIcon=Icons.star;
+  static const IconData addIcon=Icons.add;
 }

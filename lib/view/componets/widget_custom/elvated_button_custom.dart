@@ -1,11 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:movie_app/view_model/utils/colors/app_colors.dart';
-import 'package:movie_app/view_model/utils/styles/text_styles.dart';
 
-class ViewAllButton extends StatelessWidget {
+class ElevatedButtonCustom extends StatelessWidget {
   final void Function()? onPressed;
   final Widget child;
-  const ViewAllButton({super.key, this.onPressed, required this.child,});
+  const ElevatedButtonCustom({super.key, this.onPressed, required this.child,});
 
   @override
   Widget build(BuildContext context) {

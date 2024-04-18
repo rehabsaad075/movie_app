@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:movie_app/view/componets/widget_custom/fav_and_watch_item.dart';
 import 'package:movie_app/view/componets/widget_custom/image_details_custom.dart';
 import 'package:movie_app/view/componets/widget_custom/search/genres_search.dart';
 import 'package:movie_app/view/componets/widget_custom/search/similar_search.dart';
@@ -90,6 +91,13 @@ class SearchDetailsScreen extends StatelessWidget {
                         ),
                       ),
                     ],
+                  ),
+                  const SizedBox(
+                    height: 30,
+                  ),
+                  FavAndWatchItem(
+                    onFavPressed: (){},
+                    onWatchPressed: (){},
                   ),
                   const SizedBox(
                     height: 30,

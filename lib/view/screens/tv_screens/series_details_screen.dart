@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:movie_app/view/componets/sections/tv_sections/genres_series_section.dart';
 import 'package:movie_app/view/componets/sections/tv_sections/similar_series_section.dart';
+import 'package:movie_app/view/componets/widget_custom/fav_and_watch_item.dart';
 import 'package:movie_app/view/componets/widget_custom/image_details_custom.dart';
 import 'package:movie_app/view_model/cubits/series_cubit/series_cubit.dart';
 import 'package:movie_app/view_model/utils/colors/app_colors.dart';
@@ -90,6 +91,13 @@ class SeriesDetailsScreen extends StatelessWidget {
                         ),
                       ),
                     ],
+                  ),
+                  const SizedBox(
+                    height: 30,
+                  ),
+                  FavAndWatchItem(
+                    onFavPressed: (){},
+                    onWatchPressed: (){},
                   ),
                   const SizedBox(
                     height: 30,

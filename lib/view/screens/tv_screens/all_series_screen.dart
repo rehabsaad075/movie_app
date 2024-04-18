@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:movie_app/models/all_movies_model.dart';
 import 'package:movie_app/view/componets/widget_custom/image_custom.dart';
-import 'package:movie_app/view/componets/widget_custom/view_all_button.dart';
+import 'package:movie_app/view/componets/widget_custom/elvated_button_custom.dart';
 import 'package:movie_app/view/screens/tv_screens/series_details_screen.dart';
 import 'package:movie_app/view_model/cubits/series_cubit/series_cubit.dart';
 import 'package:movie_app/view_model/utils/colors/app_colors.dart';
@@ -76,7 +76,7 @@ class AllSeriesScreen extends StatelessWidget {
                         ),
                         child: Visibility(
                           visible: state is GetMoreSeriesLoadingState,
-                          replacement: ViewAllButton(
+                          replacement: ElevatedButtonCustom(
                             onPressed: () {
                               cubit.getMoreSeries();
                             },
