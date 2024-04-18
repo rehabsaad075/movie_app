@@ -27,13 +27,13 @@ class MovieDetailsScreen extends StatelessWidget {
                 physics: const BouncingScrollPhysics(),
                 children: [
                   ImageDetailsCustom(
-                    pathImage: cubit.detailsModel?.posterPath??'',
+                    pathImage: cubit.detailsMovie?.posterPath??'',
                   ),
                   const SizedBox(
                     height: 20,
                   ),
                   Text(
-                    cubit.detailsModel?.originalTitle ?? '',
+                    cubit.detailsMovie?.originalTitle ?? '',
                     style: Styles.textStyle30,
                     textAlign: TextAlign.center,
                   ),
@@ -41,7 +41,7 @@ class MovieDetailsScreen extends StatelessWidget {
                     height: 20,
                   ),
                   Text(
-                    cubit.detailsModel?.overview ?? '',
+                    cubit.detailsMovie?.overview ?? '',
                     style: Styles.textStyle20.copyWith(
                         color: AppColors.white70),
                     //textDirection: TextDirection.rtl,
@@ -64,7 +64,7 @@ class MovieDetailsScreen extends StatelessWidget {
                       ),
                       const SizedBox(width: 15,),
                       Text(
-                        cubit.detailsModel?.voteAverage?.toStringAsFixed(1).toString()??'',
+                        cubit.detailsMovie?.voteAverage?.toStringAsFixed(1).toString()??'',
                         style: Styles.textStyle18.copyWith(
                             fontWeight: FontWeight.normal
                         ),
@@ -85,7 +85,7 @@ class MovieDetailsScreen extends StatelessWidget {
                       ),
                       const SizedBox(width: 15,),
                       Text(
-                        cubit.detailsModel?.releaseDate ?? '',
+                        cubit.detailsMovie?.releaseDate ?? '',
                         style: Styles.textStyle18.copyWith(
                             fontWeight: FontWeight.normal
                         ),
@@ -96,7 +96,9 @@ class MovieDetailsScreen extends StatelessWidget {
                     height: 30,
                   ),
                   FavAndWatchItem(
-                    onFavPressed: (){},
+                    onFavPressed: (){
+                      cubit.addFavMovie();
+                    },
                     onWatchPressed: (){},
                   ),
                   const SizedBox(

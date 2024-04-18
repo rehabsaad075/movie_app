@@ -8,5 +8,6 @@ class EndPoints{
   static const String timeWindow='week';
   static const String similar='similar';
   static const String search='search/multi';
-
+  static const String account='account';
+  static const String favorite='favorite';
 }

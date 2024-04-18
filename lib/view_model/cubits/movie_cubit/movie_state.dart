@@ -31,3 +31,7 @@ class GetDetailsMovieSuccessState extends MovieStates {}
 class GetDetailsMovieErrorState extends MovieStates {}
 
 class ChangeMovieIndexState extends MovieStates {}
+
+class AddFavMovieLoadingState extends MovieStates {}
+class AddFavMovieSuccessState extends MovieStates {}
+class AddFavMovieErrorState extends MovieStates {}

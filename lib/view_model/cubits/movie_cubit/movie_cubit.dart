@@ -4,6 +4,7 @@ import 'package:movie_app/models/all_movies_model.dart';
 import 'package:movie_app/models/details_model.dart';
 import 'package:movie_app/view_model/data/diohelper.dart';
 import 'package:movie_app/view_model/data/endPoints.dart';
+import 'package:movie_app/view_model/utils/functions/flutterToastFunctions.dart';
 part 'movie_state.dart';
 
 class MovieCubit extends Cubit<MovieStates> {
@@ -103,7 +104,7 @@ bool hasMoreResults=true;
     });
   }
 
-  DetailsModel? detailsModel;
+  DetailsModel? detailsMovie;
   Future<void> getDetailsMovie({ AllMoviesModel ?movieId}) async {
     emit(GetDetailsMovieLoadingState());
     await DioHelper.get(
@@ -112,11 +113,30 @@ bool hasMoreResults=true;
         'language':'ar'
       }
     ).then((value) {
-      detailsModel=DetailsModel.fromJson(value.data);
+      detailsMovie=DetailsModel.fromJson(value.data);
       emit(GetDetailsMovieSuccessState());
     }).catchError((error){
       if(error is DioException){
         emit(GetDetailsMovieErrorState());
+      }
+    });
+  }
+
+  Future<void> addFavMovie()async {
+    emit(AddFavMovieLoadingState());
+    await DioHelper.post(
+        endPoint: '${EndPoints.account}/21091525/${EndPoints.favorite}',
+      body: {
+          'media_type':'movie',
+          'media_id':detailsMovie?.id,
+          'favorite':true
+      }
+    ).then((value) {
+      emit(AddFavMovieSuccessState());
+      showToast(msg: 'تم اضافة هذا الفيلم الى المفضلات');
+    }).catchError((error){
+      if(error is DioException){
+        emit(AddFavMovieErrorState());
       }
     });
   }
