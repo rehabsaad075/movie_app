@@ -157,5 +157,42 @@ class SeriesCubit extends Cubit<SeriesStates> {
       }
     });
   }
+
+  Future<void> addWatchedSeries()async {
+    emit(AddWatchedSeriesLoadingState());
+    await DioHelper.post(
+        endPoint: '${EndPoints.account}/21091525/${EndPoints.watchList}',
+        body: {
+          'media_type':'tv',
+          'media_id':detailsSeries?.id,
+          'watchlist':true
+        }
+    ).then((value) {
+      emit(AddWatchedSeriesSuccessState());
+      showToast(msg: 'تم اضافة هذا المسلسل الى قائمة المشاهدات');
+    }).catchError((error){
+      if(error is DioException){
+        emit(AddWatchedSeriesErrorState());
+      }
+    });
+  }
+
+  AllMoviesModel ?watchedTv;
+  Future<void>getWatchedTv()async {
+    emit(GetWatchedSeriesLoadingState());
+    await DioHelper.get(
+        endPoint: '${EndPoints.account}/21091525/${EndPoints.watchList}/${EndPoints.tv}',
+        parameters: {
+          'language':'ar'
+        }
+    ).then((value) {
+      watchedTv=AllMoviesModel.fromJson(value.data);
+      emit(GetWatchedSeriesSuccessState());
+    }).catchError((error){
+      if(error is DioException){
+        emit(GetWatchedSeriesErrorState());
+      }
+    });
+  }
 }
 

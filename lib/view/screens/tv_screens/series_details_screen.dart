@@ -99,7 +99,9 @@ class SeriesDetailsScreen extends StatelessWidget {
                     onFavPressed: (){
                       cubit.addFavSeries();
                     },
-                    onWatchPressed: (){},
+                    onWatchPressed: (){
+                      cubit.addWatchedSeries();
+                    },
                   ),
                   const SizedBox(
                     height: 30,

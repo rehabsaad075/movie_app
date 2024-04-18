@@ -8,8 +8,8 @@ import 'package:movie_app/view_model/utils/styles/text_styles.dart';
 
 class FavItemCustom extends StatelessWidget {
   final IconData icon;
-  final Results ?results;
-  const FavItemCustom({super.key, required this.icon,  this.results});
+  final Results results;
+  const FavItemCustom({super.key, required this.icon,  required this.results});
 
   @override
   Widget build(BuildContext context) {
@@ -21,7 +21,7 @@ class FavItemCustom extends StatelessWidget {
            height: 120,
            width: 120,
            child: CachedNetworkImage(
-               imageUrl: '${EndPoints.imageUrl}/${results?.posterPath}',
+               imageUrl: '${EndPoints.imageUrl}/${results.posterPath}',
              fit: BoxFit.fill,
              placeholder: (context, url) =>
                  Container(
@@ -44,12 +44,12 @@ class FavItemCustom extends StatelessWidget {
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               Text(
-                results?.originalTitle??'',
+                results.originalTitle??'',
                 style: Styles.textStyle20.copyWith(color: AppColors.whiteColor),
               ),
               const SizedBox(height: 5,),
                Text(
-                results?.overview??'',
+                results.overview??'',
                 maxLines: 2,
                 overflow: TextOverflow.ellipsis,
               ),
@@ -57,7 +57,7 @@ class FavItemCustom extends StatelessWidget {
                Row(
                 children: [
                    Text(
-                      results?.voteAverage?.toStringAsFixed(1).toString()??'',
+                      results.voteAverage?.toStringAsFixed(1).toString()??'',
                       style: Styles.textStyle18.copyWith(fontWeight: FontWeight.normal)
                   ),
                   const SizedBox(width: 3,),

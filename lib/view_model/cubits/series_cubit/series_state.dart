@@ -38,3 +38,11 @@ class AddFavSeriesErrorState extends SeriesStates {}
 class GetFavSeriesLoadingState extends SeriesStates {}
 class GetFavSeriesSuccessState extends SeriesStates {}
 class GetFavSeriesErrorState extends SeriesStates {}
+
+class AddWatchedSeriesLoadingState extends SeriesStates {}
+class AddWatchedSeriesSuccessState extends SeriesStates {}
+class AddWatchedSeriesErrorState extends SeriesStates {}
+
+class GetWatchedSeriesLoadingState extends SeriesStates {}
+class GetWatchedSeriesSuccessState extends SeriesStates {}
+class GetWatchedSeriesErrorState extends SeriesStates {}
