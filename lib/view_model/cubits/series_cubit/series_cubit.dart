@@ -45,10 +45,7 @@ class SeriesCubit extends Cubit<SeriesStates> {
   Future<void> getRatingSeries() async {
     emit(GetRatingSeriesLoadingState());
     await DioHelper.get(
-        endPoint: '${EndPoints.discover}/${EndPoints.tv}',
-        parameters: {
-          'sort_by':'vote_average.desc'
-        }
+        endPoint: '${EndPoints.tv}/${EndPoints.topRated}',
     ).then((value) {
       ratingSeries=AllMoviesModel.fromJson(value.data);
       emit(GetRatingSeriesSuccessState());
@@ -120,7 +117,7 @@ class SeriesCubit extends Cubit<SeriesStates> {
       }
     });
   }
-
+  bool isFavorite=true;
   Future<void> addFavSeries()async {
     emit(AddFavSeriesLoadingState());
     await DioHelper.post(
@@ -128,7 +125,7 @@ class SeriesCubit extends Cubit<SeriesStates> {
         body: {
           'media_type':'tv',
           'media_id':detailsSeries?.id,
-          'favorite':true
+          'favorite':isFavorite
         }
     ).then((value) {
       emit(AddFavSeriesSuccessState());
@@ -136,6 +133,24 @@ class SeriesCubit extends Cubit<SeriesStates> {
     }).catchError((error){
       if(error is DioException){
         emit(AddFavSeriesErrorState());
+      }
+    });
+  }
+
+  Future<void> deleteFavTv(int index)async {
+    await DioHelper.post(
+        endPoint: '${EndPoints.account}/21091525/${EndPoints.favorite}',
+        body: {
+          'media_type':'tv',
+          'media_id':favTv?.results?[index].id,
+          'favorite':!isFavorite
+        }
+    ).then((value) {
+      getFavTv();
+      emit(DeleteFavSeriesSuccessState());
+    }).catchError((error){
+      if(error is DioException){
+        emit(DeleteFavSeriesErrorState());
       }
     });
   }

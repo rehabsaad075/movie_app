@@ -42,6 +42,8 @@ class WatchedSeriesScreen extends StatelessWidget {
                     return  FavItemCustom(
                       icon: AppIcons.deleteIcon,
                       results: seriesCubit.watchedTv?.results?[index]??Results(),
+                      onIconPressed: () {  },
+                      onTap: () {  },
                     );
                   },
                   itemCount: seriesCubit.watchedTv?.results?.length??0

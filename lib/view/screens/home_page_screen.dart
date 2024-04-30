@@ -35,7 +35,7 @@ class HomePageScreen extends StatelessWidget {
                   label: 'المشاهدة'
               ),
               BottomNavigationBarItem(
-                  icon:Icon(AppIcons.favIcon) ,
+                  icon:Icon(AppIcons.favBorderIcon) ,
                   label:'المفضلة'
               ),
               BottomNavigationBarItem(

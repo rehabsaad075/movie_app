@@ -10,7 +10,7 @@ class CircleContainerCustom extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return  Container(
-      width: 65,
+      padding: const EdgeInsets.symmetric(horizontal: 12,),
       alignment: Alignment.center,
       decoration: BoxDecoration(
         borderRadius: BorderRadius.circular(100),
@@ -19,8 +19,6 @@ class CircleContainerCustom extends StatelessWidget {
       child:  Text(
           genres.name??'',
         style: Styles.textStyle18,
-        maxLines: 1,
-        overflow: TextOverflow.ellipsis,
       ),
     );
   }

@@ -46,10 +46,7 @@ class MovieCubit extends Cubit<MovieStates> {
   Future<void> getRatingMovies() async {
     emit(GetRatingMoviesLoadingState());
     await DioHelper.get(
-        endPoint: '${EndPoints.discover}/${EndPoints.movie}',
-        parameters: {
-          'sort_by':'vote_average.desc'
-        }
+        endPoint: '${EndPoints.movie}/${EndPoints.topRated}',
     ).then((value) {
       ratingMoviesModel=AllMoviesModel.fromJson(value.data);
       emit(GetRatingMoviesSuccessState());
@@ -121,7 +118,7 @@ bool hasMoreResults=true;
       }
     });
   }
-
+ bool isFavorite=true;
   Future<void> addFavMovie()async {
     emit(AddFavMovieLoadingState());
     await DioHelper.post(
@@ -129,7 +126,7 @@ bool hasMoreResults=true;
       body: {
           'media_type':'movie',
           'media_id':detailsMovie?.id,
-          'favorite':true
+          'favorite':isFavorite
       }
     ).then((value) {
       emit(AddFavMovieSuccessState());
@@ -139,6 +136,32 @@ bool hasMoreResults=true;
         emit(AddFavMovieErrorState());
       }
     });
+  }
+
+  Future<void> deleteFavMovie(int index)async {
+    await DioHelper.post(
+        endPoint: '${EndPoints.account}/21091525/${EndPoints.favorite}',
+        body: {
+          'media_type':'movie',
+          'media_id':favMovie?.results?[index].id,
+          'favorite':!isFavorite
+        }
+    ).then((value) {
+      getFavMovie();
+      emit(DeleteFavMovieSuccessState());
+    }).catchError((error){
+      if(error is DioException){
+        emit(DeleteFavMovieErrorState());
+      }
+    });
+  }
+
+  void changeFavMovie(){
+    if(!isFavorite){
+      addFavMovie();
+    }else{
+      //deleteFavMovie();
+    }
   }
 
   AllMoviesModel ?favMovie;
@@ -158,6 +181,7 @@ bool hasMoreResults=true;
       }
     });
   }
+
 
   Future<void> addWatchedMovie()async {
     emit(AddWatchedMovieLoadingState());
@@ -195,4 +219,5 @@ bool hasMoreResults=true;
       }
     });
   }
+
 }

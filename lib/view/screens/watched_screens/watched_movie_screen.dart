@@ -42,6 +42,8 @@ class WatchedMovieScreen extends StatelessWidget {
                     return  FavItemCustom(
                       icon: AppIcons.deleteIcon,
                       results: movieCubit.watchedMovie?.results?[index]??Results(),
+                      onIconPressed: () {  },
+                      onTap: () {  },
                     );
                   },
                   itemCount: movieCubit.watchedMovie?.results?.length??0

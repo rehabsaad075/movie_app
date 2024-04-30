@@ -46,3 +46,6 @@ class AddWatchedSeriesErrorState extends SeriesStates {}
 class GetWatchedSeriesLoadingState extends SeriesStates {}
 class GetWatchedSeriesSuccessState extends SeriesStates {}
 class GetWatchedSeriesErrorState extends SeriesStates {}
+
+class DeleteFavSeriesSuccessState extends SeriesStates {}
+class DeleteFavSeriesErrorState extends SeriesStates {}
