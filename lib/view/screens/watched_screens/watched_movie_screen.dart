@@ -2,8 +2,10 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:movie_app/models/all_movies_model.dart';
 import 'package:movie_app/view/componets/widget_custom/fav_item_custom.dart';
+import 'package:movie_app/view/screens/movie_screens/movie_details_screen.dart';
 import 'package:movie_app/view_model/cubits/movie_cubit/movie_cubit.dart';
 import 'package:movie_app/view_model/utils/colors/app_colors.dart';
+import 'package:movie_app/view_model/utils/functions/navigation_functions.dart';
 import 'package:movie_app/view_model/utils/icons/app_icons.dart';
 import 'package:movie_app/view_model/utils/styles/text_styles.dart';
 
@@ -42,8 +44,18 @@ class WatchedMovieScreen extends StatelessWidget {
                     return  FavItemCustom(
                       icon: AppIcons.deleteIcon,
                       results: movieCubit.watchedMovie?.results?[index]??Results(),
-                      onIconPressed: () {  },
-                      onTap: () {  },
+                      onIconPressed: () {
+                        movieCubit.deleteWatchedMovie(index);
+                      },
+                      onTap: () {
+                        movieCubit.changeMovieIndex(index);
+                        movieCubit.getDetailsMovie(movieId: movieCubit.watchedMovie);
+                        movieCubit.getSimilarMovies(movieId: movieCubit.watchedMovie);
+                        navigationPushFunction(
+                            context: context,
+                            screen: const MovieDetailsScreen()
+                        );
+                      },
                     );
                   },
                   itemCount: movieCubit.watchedMovie?.results?.length??0

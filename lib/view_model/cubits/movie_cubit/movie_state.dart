@@ -48,7 +48,10 @@ class GetWatchedMovieLoadingState extends MovieStates {}
 class GetWatchedMovieSuccessState extends MovieStates {}
 class GetWatchedMovieErrorState extends MovieStates {}
 
-class DeleteFavMovieLoadingState extends MovieStates {}
+
 class DeleteFavMovieSuccessState extends MovieStates {}
 class DeleteFavMovieErrorState extends MovieStates {}
+
+class DeleteWatchedMovieSuccessState extends MovieStates {}
+class DeleteWatchedMovieErrorState extends MovieStates {}
 

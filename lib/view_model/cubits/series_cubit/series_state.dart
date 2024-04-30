@@ -49,3 +49,6 @@ class GetWatchedSeriesErrorState extends SeriesStates {}
 
 class DeleteFavSeriesSuccessState extends SeriesStates {}
 class DeleteFavSeriesErrorState extends SeriesStates {}
+
+class DeleteWatchedSeriesSuccessState extends SeriesStates {}
+class DeleteWatchedSeriesErrorState extends SeriesStates {}

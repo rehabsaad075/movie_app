@@ -192,6 +192,24 @@ class SeriesCubit extends Cubit<SeriesStates> {
     });
   }
 
+  Future<void> deleteWatchedTv(int index)async {
+    await DioHelper.post(
+        endPoint: '${EndPoints.account}/21091525/${EndPoints.watchList}',
+        body: {
+          'media_type':'tv',
+          'media_id':watchedTv?.results?[index].id,
+          'watchlist':false
+        }
+    ).then((value) {
+      getWatchedTv();
+      emit(DeleteWatchedSeriesSuccessState());
+    }).catchError((error){
+      if(error is DioException){
+        emit(DeleteWatchedSeriesErrorState());
+      }
+    });
+  }
+
   AllMoviesModel ?watchedTv;
   Future<void>getWatchedTv()async {
     emit(GetWatchedSeriesLoadingState());

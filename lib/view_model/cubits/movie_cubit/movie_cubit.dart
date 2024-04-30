@@ -202,6 +202,24 @@ bool hasMoreResults=true;
     });
   }
 
+  Future<void> deleteWatchedMovie(int index)async {
+    await DioHelper.post(
+        endPoint: '${EndPoints.account}/21091525/${EndPoints.watchList}',
+        body: {
+          'media_type':'movie',
+          'media_id':watchedMovie?.results?[index].id,
+          'watchlist':false
+        }
+    ).then((value) {
+      getWatchedMovie();
+    emit(DeleteWatchedMovieSuccessState());
+    }).catchError((error){
+      if(error is DioException){
+        emit(DeleteWatchedMovieErrorState());
+      }
+    });
+  }
+
   AllMoviesModel ?watchedMovie;
   Future<void>getWatchedMovie()async {
     emit(GetWatchedMovieLoadingState());
