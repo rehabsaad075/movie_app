@@ -95,10 +95,10 @@ class SearchDetailsScreen extends StatelessWidget {
                   const SizedBox(
                     height: 30,
                   ),
-                  FavAndWatchItem(
-                    onFavPressed: (){},
-                    onWatchPressed: (){},
-                  ),
+                  // FavAndWatchItem(
+                  //   onFavPressed: (){},
+                  //   onWatchPressed: (){},
+                  // ),
                   const SizedBox(
                     height: 30,
                   ),

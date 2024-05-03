@@ -55,3 +55,6 @@ class DeleteFavMovieErrorState extends MovieStates {}
 class DeleteWatchedMovieSuccessState extends MovieStates {}
 class DeleteWatchedMovieErrorState extends MovieStates {}
 
+class ChangeFavMovieState extends MovieStates {}
+
+

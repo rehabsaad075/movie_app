@@ -129,7 +129,6 @@ class SeriesCubit extends Cubit<SeriesStates> {
         }
     ).then((value) {
       emit(AddFavSeriesSuccessState());
-      showToast(msg: 'تم اضافة هذا المسلسل الى المفضلات');
     }).catchError((error){
       if(error is DioException){
         emit(AddFavSeriesErrorState());

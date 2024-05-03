@@ -118,7 +118,7 @@ bool hasMoreResults=true;
       }
     });
   }
- bool isFavorite=true;
+ bool isFavorite=false;
   Future<void> addFavMovie()async {
     emit(AddFavMovieLoadingState());
     await DioHelper.post(
@@ -126,11 +126,10 @@ bool hasMoreResults=true;
       body: {
           'media_type':'movie',
           'media_id':detailsMovie?.id,
-          'favorite':isFavorite
+          'favorite':!isFavorite
       }
     ).then((value) {
       emit(AddFavMovieSuccessState());
-      showToast(msg: 'تم اضافة هذا الفيلم الى المفضلات');
     }).catchError((error){
       if(error is DioException){
         emit(AddFavMovieErrorState());
@@ -144,7 +143,7 @@ bool hasMoreResults=true;
         body: {
           'media_type':'movie',
           'media_id':favMovie?.results?[index].id,
-          'favorite':!isFavorite
+          'favorite':isFavorite
         }
     ).then((value) {
       getFavMovie();
@@ -157,11 +156,28 @@ bool hasMoreResults=true;
   }
 
   void changeFavMovie(){
-    if(!isFavorite){
+    isFavorite=!isFavorite;
+    if(isFavorite==true){
       addFavMovie();
+      //isFavorite=!isFavorite;
     }else{
-      //deleteFavMovie();
+      DioHelper.post(
+          endPoint: '${EndPoints.account}/21091525/${EndPoints.favorite}',
+          body: {
+            'media_type':'movie',
+            'media_id':detailsMovie?.id,
+            'favorite':isFavorite
+          }
+      ).then((value) {
+        //isFavorite=!isFavorite;
+        emit(DeleteFavMovieSuccessState());
+      }).catchError((error){
+        if(error is DioException){
+          emit(DeleteFavMovieErrorState());
+        }
+      });
     }
+    emit(ChangeFavMovieState());
   }
 
   AllMoviesModel ?favMovie;

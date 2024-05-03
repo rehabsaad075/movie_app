@@ -6,6 +6,7 @@ import 'package:movie_app/view/componets/widget_custom/fav_and_watch_item.dart';
 import 'package:movie_app/view/componets/widget_custom/image_details_custom.dart';
 import 'package:movie_app/view_model/cubits/series_cubit/series_cubit.dart';
 import 'package:movie_app/view_model/utils/colors/app_colors.dart';
+import 'package:movie_app/view_model/utils/icons/app_icons.dart';
 import 'package:movie_app/view_model/utils/styles/text_styles.dart';
 
 class SeriesDetailsScreen extends StatelessWidget {
@@ -95,13 +96,50 @@ class SeriesDetailsScreen extends StatelessWidget {
                   const SizedBox(
                     height: 30,
                   ),
-                  FavAndWatchItem(
-                    onFavPressed: (){
-                      cubit.addFavSeries();
-                    },
-                    onWatchPressed: (){
-                      cubit.addWatchedSeries();
-                    },
+                  Row(
+                    children: [
+                      Visibility(
+                        visible: state is AddWatchedSeriesSuccessState,
+                        replacement: SizedBox(
+                          width: 165,
+                          child: FavAndWatchItem(
+                              onPressed: (){
+                                cubit.addWatchedSeries();
+                              },
+                              text: 'المشاهدة لاحقا',
+                              icon: AppIcons.addIcon
+                          ),
+                        ),
+                        child: const SizedBox(
+                          width: 140,
+                          child: FavAndWatchItem(
+                              text: ' المشاهدات',
+                              icon: AppIcons.doneIcon
+                          ),
+                        ),
+                      ),
+                      const SizedBox(width: 15,),
+                      Visibility(
+                        visible: state is AddFavSeriesSuccessState,
+                        replacement:SizedBox(
+                          width: 185,
+                          child: FavAndWatchItem(
+                              onPressed: (){
+                                cubit.addFavSeries();
+                              },
+                              text: 'اضافة الى المفضلة',
+                              icon: AppIcons.favBorderIcon
+                          ),
+                        ),
+                        child:const SizedBox(
+                          width: 155,
+                          child: FavAndWatchItem(
+                              text: ' المفضل لديك',
+                              icon: AppIcons.favIcon
+                          ),
+                        ),
+                      ),
+                    ],
                   ),
                   const SizedBox(
                     height: 30,
