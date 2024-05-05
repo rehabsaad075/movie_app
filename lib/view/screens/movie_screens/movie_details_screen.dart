@@ -1,7 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:movie_app/view/componets/sections/movie_sections/buy_movie_list.dart';
+import 'package:movie_app/view/componets/sections/movie_sections/flatrate_movie_list.dart';
 import 'package:movie_app/view/componets/sections/movie_sections/genres_movies_section.dart';
+import 'package:movie_app/view/componets/sections/movie_sections/rent_movie_list.dart';
 import 'package:movie_app/view/componets/sections/movie_sections/similer_movie_section.dart';
+import 'package:movie_app/view/componets/widget_custom/elvated_button_custom.dart';
 import 'package:movie_app/view/componets/widget_custom/fav_and_watch_item.dart';
 import 'package:movie_app/view/componets/widget_custom/image_details_custom.dart';
 import 'package:movie_app/view_model/cubits/movie_cubit/movie_cubit.dart';
@@ -140,6 +144,36 @@ class MovieDetailsScreen extends StatelessWidget {
                         ),
                       ),
                     ],
+                  ),
+                  const SizedBox(
+                    height: 15,
+                  ),
+                   Text(
+                      'افضل سعر',
+                    style: Styles.textStyle20.copyWith(color: AppColors.whiteColor),
+                  ),
+                  Text(
+                    'بث',
+                    style: Styles.textStyle22.copyWith(color: AppColors.appColor),
+                  ),
+                  const FlatrateMovieList(),
+                  Text(
+                    'ايجار',
+                    style: Styles.textStyle22.copyWith(color: AppColors.appColor),
+                  ),
+                  const RentMovieList(),
+                  Text(
+                    'شراء',
+                    style: Styles.textStyle22.copyWith(color: AppColors.appColor),
+                  ),
+                  const BuyMovieList(),
+                   const SizedBox(height: 30,),
+                   ElevatedButtonCustom(
+                    onPressed: (){},
+                      child: const Text(
+                          'للمشاهدة الفيلم ',
+                        style: Styles.textStyle20,
+                      )
                   ),
                   const SizedBox(
                     height: 30,
