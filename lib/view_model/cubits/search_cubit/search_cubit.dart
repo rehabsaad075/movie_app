@@ -2,8 +2,10 @@ import 'package:dio/dio.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:movie_app/models/all_movies_model.dart';
 import 'package:movie_app/models/details_model.dart';
+import 'package:movie_app/models/watchProvidersModels.dart';
 import 'package:movie_app/view_model/data/diohelper.dart';
 import 'package:movie_app/view_model/data/endPoints.dart';
+import 'package:movie_app/view_model/utils/functions/flutterToastFunctions.dart';
 part 'search_state.dart';
 
 class SearchCubit extends Cubit<SearchState> {
@@ -63,6 +65,59 @@ class SearchCubit extends Cubit<SearchState> {
     }).catchError((error){
       if(error is DioException){
         emit(GetDetailsSearchErrorState());
+      }
+    });
+  }
+
+  bool isFavorite=false;
+  Future<void> addFavSearch()async {
+    emit(AddFavSearchLoadingState());
+    await DioHelper.post(
+        endPoint: '${EndPoints.account}/21091525/${EndPoints.favorite}',
+        body: {
+          'media_type':'movie',
+          'media_id':detailsModel?.id,
+          'favorite':!isFavorite
+        }
+    ).then((value) {
+      emit(AddFavSearchSuccessState());
+    }).catchError((error){
+      if(error is DioException){
+        emit(AddFavSearchErrorState());
+      }
+    });
+  }
+
+  Future<void> addWatchedSearch()async {
+    emit(AddWatchedSearchLoadingState());
+    await DioHelper.post(
+        endPoint: '${EndPoints.account}/21091525/${EndPoints.watchList}',
+        body: {
+          'media_type':'movie',
+          'media_id':detailsModel?.id,
+          'watchlist':true
+        }
+    ).then((value) {
+      emit(AddWatchedSearchSuccessState());
+      showToast(msg: 'تم اضافة هذا الفيلم الى قائمة المشاهدات');
+    }).catchError((error){
+      if(error is DioException){
+        emit(AddWatchedSearchErrorState());
+      }
+    });
+  }
+
+  WatchProviderModel ? watchProviderModel;
+  Future<void>getWatchProvidersMovie()async {
+    emit(GetWatchProvidersSearchLoadingState());
+    await DioHelper.get(
+        endPoint: '${EndPoints.movie}/${detailsModel?.id}/${EndPoints.watch}/${EndPoints.providers}'
+    ).then((value) {
+      watchProviderModel=WatchProviderModel.fromJson(value.data);
+      emit(GetWatchProvidersSearchSuccessState());
+    }).catchError((error){
+      if(error is DioException){
+        emit(GetWatchProvidersSearchErrorState());
       }
     });
   }

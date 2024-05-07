@@ -17,3 +17,15 @@ class GetSimilarSearchErrorState extends SearchState {}
 class GetDetailsSearchLoadingState extends SearchState {}
 class GetDetailsSearchSuccessState extends SearchState {}
 class GetDetailsSearchErrorState extends SearchState {}
+
+class AddFavSearchLoadingState extends SearchState {}
+class AddFavSearchSuccessState extends SearchState {}
+class AddFavSearchErrorState extends SearchState {}
+
+class AddWatchedSearchLoadingState extends SearchState {}
+class AddWatchedSearchSuccessState extends SearchState {}
+class AddWatchedSearchErrorState extends SearchState {}
+
+class GetWatchProvidersSearchLoadingState extends SearchState {}
+class GetWatchProvidersSearchSuccessState extends SearchState {}
+class GetWatchProvidersSearchErrorState extends SearchState {}
