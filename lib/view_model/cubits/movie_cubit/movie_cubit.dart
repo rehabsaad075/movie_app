@@ -1,4 +1,6 @@
+
 import 'package:dio/dio.dart';
+import 'package:flutter/cupertino.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:movie_app/models/all_movies_model.dart';
 import 'package:movie_app/models/details_model.dart';
@@ -268,7 +270,25 @@ bool hasMoreResults=true;
       }
     });
   }
-
+  TextEditingController controller=TextEditingController();
+  Future<void>addRatingMovie()async {
+    emit(AddRatingMovieLoadingState());
+    await DioHelper.post(
+        endPoint: '${EndPoints.movie}/${detailsMovie?.id}/${EndPoints.rating}',
+      body: {
+          'value':controller.text
+      }
+    ).then((value) {
+      controller.clear();
+      showToast(msg: 'تم اضافة هذا التقييم بنجاح');
+      emit(AddRatingMovieSuccessState());
+    }).catchError((error){
+      if(error is DioException){
+        print(error);
+        emit(AddRatingMovieErrorState());
+      }
+    });
+  }
   // Future<void> launchUrl(String url) async {
   //    Uri uri = Uri.parse(url);
   //   if (await canLaunchUrl(uri)) {

@@ -60,3 +60,7 @@ class ChangeFavMovieState extends MovieStates {}
 class GetWatchProvidersMovieLoadingState extends MovieStates {}
 class GetWatchProvidersMovieSuccessState extends MovieStates {}
 class GetWatchProvidersMovieErrorState extends MovieStates {}
+
+class AddRatingMovieLoadingState extends MovieStates {}
+class AddRatingMovieSuccessState extends MovieStates {}
+class AddRatingMovieErrorState extends MovieStates {}

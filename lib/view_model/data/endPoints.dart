@@ -15,7 +15,7 @@ class EndPoints{
   static const String watchList='watchlist';
   static const String watch='watch';
   static const String providers='providers';
-
+  static const String rating='rating';
 
 
 }

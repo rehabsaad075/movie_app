@@ -2,12 +2,14 @@ import 'package:flutter/material.dart';
 import 'package:movie_app/view_model/utils/colors/app_colors.dart';
 
 class TextFormFieldCustom extends StatelessWidget {
-  const TextFormFieldCustom({super.key});
+  final TextEditingController? controller;
+  const TextFormFieldCustom({super.key, this.controller});
 
   @override
   Widget build(BuildContext context) {
     return TextFormField(
       cursorColor: AppColors.appColor,
+      controller: controller,
       decoration: InputDecoration(
         labelText: 'اضافة تقييم',
         labelStyle:  const TextStyle(
