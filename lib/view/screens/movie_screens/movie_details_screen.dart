@@ -8,9 +8,11 @@ import 'package:movie_app/view/componets/sections/movie_sections/similer_movie_s
 import 'package:movie_app/view/componets/widget_custom/elvated_button_custom.dart';
 import 'package:movie_app/view/componets/widget_custom/fav_and_watch_item.dart';
 import 'package:movie_app/view/componets/widget_custom/image_details_custom.dart';
+import 'package:movie_app/view/screens/movie_screens/add_rating_movie_screen.dart';
 import 'package:movie_app/view_model/cubits/movie_cubit/movie_cubit.dart';
 import 'package:movie_app/view_model/utils/colors/app_colors.dart';
 import 'package:movie_app/view_model/utils/functions/flutterToastFunctions.dart';
+import 'package:movie_app/view_model/utils/functions/navigation_functions.dart';
 import 'package:movie_app/view_model/utils/icons/app_icons.dart';
 import 'package:movie_app/view_model/utils/styles/text_styles.dart';
 import 'package:url_launcher/url_launcher.dart';
@@ -77,12 +79,41 @@ class MovieDetailsScreen extends StatelessWidget {
                             fontWeight: FontWeight.normal
                         ),
                       ),
-                      const SizedBox(width: 15,),
+                      const SizedBox(width: 10,),
+                      const Icon(
+                        AppIcons.starIcon,
+                        color: AppColors.appColor,
+                        size: 18,
+                      ),
+                      const SizedBox(width: 3,),
                       Text(
                         cubit.detailsMovie?.voteAverage?.toStringAsFixed(1).toString()??'',
                         style: Styles.textStyle18.copyWith(
                             fontWeight: FontWeight.normal
                         ),
+                      ),
+                      const SizedBox(width: 100,),
+                      TextButton(
+                          onPressed: (){
+                            navigationPushFunction(
+                                context: context,
+                                screen: const AddRatingMovieScreen()
+                            );
+                          },
+                          child: const Row(
+                            children: [
+                              Text(
+                                'اضافة تقييم',
+                                style: Styles.textStyle18,
+                              ),
+                              SizedBox(width: 5,),
+                              Icon(
+                                AppIcons.starIcon,
+                                color: AppColors.appColor,
+                                size: 18,
+                              ),
+                            ],
+                          )
                       ),
                     ],
                   ),
