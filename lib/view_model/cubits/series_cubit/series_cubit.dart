@@ -2,6 +2,7 @@ import 'package:dio/dio.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:movie_app/models/all_movies_model.dart';
 import 'package:movie_app/models/details_model.dart';
+import 'package:movie_app/models/watchProvidersModels.dart';
 import 'package:movie_app/view_model/data/diohelper.dart';
 import 'package:movie_app/view_model/data/endPoints.dart';
 import 'package:movie_app/view_model/utils/functions/flutterToastFunctions.dart';
@@ -95,6 +96,7 @@ class SeriesCubit extends Cubit<SeriesStates> {
       emit(GetSimilarSeriesSuccessState());
     }).catchError((error){
       if(error is DioException){
+        print(error);
         emit(GetSimilarSeriesErrorState());
       }
     });
@@ -223,6 +225,21 @@ class SeriesCubit extends Cubit<SeriesStates> {
     }).catchError((error){
       if(error is DioException){
         emit(GetWatchedSeriesErrorState());
+      }
+    });
+  }
+
+  WatchProviderModel ? watchProviderModel;
+  Future<void>getWatchProvidersTv()async {
+    emit(GetWatchedProvidersSeriesLoadingState());
+    await DioHelper.get(
+        endPoint: '${EndPoints.tv}/${detailsSeries?.id}/${EndPoints.watch}/${EndPoints.providers}'
+    ).then((value) {
+      watchProviderModel=WatchProviderModel.fromJson(value.data);
+      emit(GetWatchedProvidersSeriesSuccessState());
+    }).catchError((error){
+      if(error is DioException){
+        emit(GetWatchedProvidersSeriesErrorState());
       }
     });
   }

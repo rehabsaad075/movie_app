@@ -2,12 +2,15 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:movie_app/view/componets/sections/tv_sections/genres_series_section.dart';
 import 'package:movie_app/view/componets/sections/tv_sections/similar_series_section.dart';
+import 'package:movie_app/view/componets/widget_custom/elvated_button_custom.dart';
 import 'package:movie_app/view/componets/widget_custom/fav_and_watch_item.dart';
 import 'package:movie_app/view/componets/widget_custom/image_details_custom.dart';
 import 'package:movie_app/view_model/cubits/series_cubit/series_cubit.dart';
 import 'package:movie_app/view_model/utils/colors/app_colors.dart';
+import 'package:movie_app/view_model/utils/functions/flutterToastFunctions.dart';
 import 'package:movie_app/view_model/utils/icons/app_icons.dart';
 import 'package:movie_app/view_model/utils/styles/text_styles.dart';
+import 'package:url_launcher/url_launcher.dart';
 
 class SeriesDetailsScreen extends StatelessWidget {
   const SeriesDetailsScreen({super.key});
@@ -140,6 +143,25 @@ class SeriesDetailsScreen extends StatelessWidget {
                         ),
                       ),
                     ],
+                  ),
+                  const SizedBox(
+                    height: 30,
+                  ),
+                  ElevatedButtonCustom(
+                      onPressed: () async {
+                        cubit.getWatchProvidersTv();
+                        Uri url = Uri.parse(cubit.watchProviderModel?.results?.eG?.link??'');
+                        if (await canLaunchUrl(url)) {
+                          await launchUrl(url);
+                        }
+                        else{
+                          showToast(msg: 'هذا المسلسل غير متاح حاليا');
+                        }
+                      },
+                      child: const Text(
+                        'للمشاهدة المسلسل ',
+                        style: Styles.textStyle20,
+                      )
                   ),
                   const SizedBox(
                     height: 30,

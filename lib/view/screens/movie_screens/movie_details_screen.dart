@@ -10,23 +10,33 @@ import 'package:movie_app/view/componets/widget_custom/fav_and_watch_item.dart';
 import 'package:movie_app/view/componets/widget_custom/image_details_custom.dart';
 import 'package:movie_app/view_model/cubits/movie_cubit/movie_cubit.dart';
 import 'package:movie_app/view_model/utils/colors/app_colors.dart';
+import 'package:movie_app/view_model/utils/functions/flutterToastFunctions.dart';
 import 'package:movie_app/view_model/utils/icons/app_icons.dart';
 import 'package:movie_app/view_model/utils/styles/text_styles.dart';
+import 'package:url_launcher/url_launcher.dart';
 
 class MovieDetailsScreen extends StatelessWidget {
   const MovieDetailsScreen({super.key});
 
   @override
   Widget build(BuildContext context) {
-    return BlocBuilder<MovieCubit, MovieStates>(
+    return BlocProvider.value(
+  value: MovieCubit.get(context)..getWatchProvidersMovie(),
+  child: BlocBuilder<MovieCubit, MovieStates>(
       builder: (context, state) {
         MovieCubit cubit = MovieCubit.get(context);
-        return Directionality(
-          textDirection: TextDirection.rtl,
-          child: Scaffold(
-            body: Visibility(
-              visible: state is GetDetailsMovieLoadingState,
-              replacement: ListView(
+        if (state is GetDetailsMovieLoadingState ){
+          return const Center(
+            child: CircularProgressIndicator(
+              color: AppColors.appColor,
+            ),
+          );
+        }
+        else{
+          return Directionality(
+            textDirection: TextDirection.rtl,
+            child: Scaffold(
+              body:ListView(
                 padding: const EdgeInsets.symmetric(
                     vertical: 30, horizontal: 8),
                 physics: const BouncingScrollPhysics(),
@@ -146,32 +156,45 @@ class MovieDetailsScreen extends StatelessWidget {
                     ],
                   ),
                   const SizedBox(
-                    height: 15,
+                    height: 30,
                   ),
-                   Text(
-                      'افضل سعر',
-                    style: Styles.textStyle20.copyWith(color: AppColors.whiteColor),
-                  ),
-                  Text(
-                    'بث',
-                    style: Styles.textStyle22.copyWith(color: AppColors.appColor),
-                  ),
-                  const FlatrateMovieList(),
-                  Text(
-                    'ايجار',
-                    style: Styles.textStyle22.copyWith(color: AppColors.appColor),
-                  ),
-                  const RentMovieList(),
-                  Text(
-                    'شراء',
-                    style: Styles.textStyle22.copyWith(color: AppColors.appColor),
-                  ),
-                  const BuyMovieList(),
-                   const SizedBox(height: 30,),
-                   ElevatedButtonCustom(
-                    onPressed: (){},
+                  if((cubit.watchProviderModel?.results?.eG?.flatrate??[]).isNotEmpty)
+                    ...[
+                      Text(
+                        'بث',
+                        style: Styles.textStyle22.copyWith(color: AppColors.appColor),
+                      ),
+                      const FlatrateMovieList(),
+                    ],
+                  if((cubit.watchProviderModel?.results?.eG?.rent??[]).isNotEmpty)
+                    ...[
+                      Text(
+                        'ايجار',
+                        style: Styles.textStyle22.copyWith(color: AppColors.appColor),
+                      ),
+                      const RentMovieList(),
+                    ],
+                  if((cubit.watchProviderModel?.results?.eG?.buy??[]).isNotEmpty)
+                    ...[
+                      Text(
+                        'شراء',
+                        style: Styles.textStyle22.copyWith(color: AppColors.appColor),
+                      ),
+                      const BuyMovieList(),
+                      const SizedBox(height: 30,),
+                    ],
+                  ElevatedButtonCustom(
+                      onPressed: () async {
+                        Uri url = Uri.parse(cubit.watchProviderModel?.results?.eG?.link??'');
+                        if (await canLaunchUrl(url)) {
+                        await launchUrl(url);
+                        }
+                        else{
+                          showToast(msg: 'هذا الفيلم غير متاح حاليا');
+                        }
+                      },
                       child: const Text(
-                          'للمشاهدة الفيلم ',
+                        'للمشاهدة الفيلم ',
                         style: Styles.textStyle20,
                       )
                   ),
@@ -189,15 +212,11 @@ class MovieDetailsScreen extends StatelessWidget {
                   const SimilarMovieSection()
                 ],
               ),
-              child: const Center(
-                child: CircularProgressIndicator(
-                  color: AppColors.appColor,
-                ),
-              ),
             ),
-          ),
-        );
+          );
+        }
       },
-    );
+    ),
+);
   }
 }

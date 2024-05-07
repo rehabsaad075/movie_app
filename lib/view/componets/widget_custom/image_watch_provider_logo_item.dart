@@ -1,7 +1,8 @@
 import 'package:flutter/material.dart';
-
+import 'package:movie_app/view_model/data/endPoints.dart';
 class ImageWatchProviderLogoItem extends StatelessWidget {
-  const ImageWatchProviderLogoItem({super.key});
+  final String logoPath;
+  const ImageWatchProviderLogoItem({super.key, required this.logoPath});
 
   @override
   Widget build(BuildContext context) {
@@ -9,8 +10,10 @@ class ImageWatchProviderLogoItem extends StatelessWidget {
       width: 60,
       decoration: BoxDecoration(
         borderRadius: BorderRadius.circular(5),
-        image: const DecorationImage(
-            image: NetworkImage('https://image.tmdb.org/t/p/w500/97yvRBw1GzX7fXprcF80er19ot.jpg'),
+        image: DecorationImage(
+            image: NetworkImage(
+              '${EndPoints.imageUrl}$logoPath'
+            ),
           fit: BoxFit.fill
         )
       ),

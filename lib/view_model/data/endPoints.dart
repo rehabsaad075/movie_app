@@ -13,6 +13,9 @@ class EndPoints{
   static const String favorite='favorite';
   static const String movies='movies';
   static const String watchList='watchlist';
+  static const String watch='watch';
+  static const String providers='providers';
+
 
 
 }

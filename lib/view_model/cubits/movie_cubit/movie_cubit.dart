@@ -2,6 +2,7 @@ import 'package:dio/dio.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:movie_app/models/all_movies_model.dart';
 import 'package:movie_app/models/details_model.dart';
+import 'package:movie_app/models/watchProvidersModels.dart';
 import 'package:movie_app/view_model/data/diohelper.dart';
 import 'package:movie_app/view_model/data/endPoints.dart';
 import 'package:movie_app/view_model/utils/functions/flutterToastFunctions.dart';
@@ -253,5 +254,25 @@ bool hasMoreResults=true;
       }
     });
   }
+  WatchProviderModel ? watchProviderModel;
+  Future<void>getWatchProvidersMovie()async {
+    emit(GetWatchProvidersMovieLoadingState());
+    await DioHelper.get(
+        endPoint: '${EndPoints.movie}/${detailsMovie?.id}/${EndPoints.watch}/${EndPoints.providers}'
+    ).then((value) {
+      watchProviderModel=WatchProviderModel.fromJson(value.data);
+      emit(GetWatchProvidersMovieSuccessState());
+    }).catchError((error){
+      if(error is DioException){
+        emit(GetWatchProvidersMovieErrorState());
+      }
+    });
+  }
 
+  // Future<void> launchUrl(String url) async {
+  //    Uri uri = Uri.parse(url);
+  //   if (await canLaunchUrl(uri)) {
+  //     await launchUrl(url);
+  //   }
+  // }
 }

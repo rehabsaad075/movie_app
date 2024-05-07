@@ -15,14 +15,17 @@ class WatchProviderModel {
 
 class Results {
   EG? eG;
+  US? us;
 
   Results(
       {
         this.eG,
+        this.us
 });
 
   Results.fromJson(Map<String, dynamic> json) {
     eG = json['EG'] != null ?  EG.fromJson(json['EG']) : null;
+    us = json['US'] != null ?  US.fromJson(json['US']) : null;
   }
 
 }
@@ -53,6 +56,30 @@ class EG {
       flatrate = <Flatrate>[];
       json['flatrate'].forEach((v) {
         flatrate!.add( Flatrate.fromJson(v));
+      });
+    }
+  }
+
+}
+class US {
+  String? link;
+  List<Rent>? rent;
+  List<Buy>? buy;
+
+  US({this.link, this.rent, this.buy,});
+
+  US.fromJson(Map<String, dynamic> json) {
+    link = json['link'];
+    if (json['rent'] != null) {
+      rent = <Rent>[];
+      json['rent'].forEach((v) {
+        rent!.add( Rent.fromJson(v));
+      });
+    }
+    if (json['buy'] != null) {
+      buy = <Buy>[];
+      json['buy'].forEach((v) {
+        buy!.add( Buy.fromJson(v));
       });
     }
   }
