@@ -56,3 +56,7 @@ class DeleteWatchedSeriesErrorState extends SeriesStates {}
 class GetWatchedProvidersSeriesLoadingState extends SeriesStates {}
 class GetWatchedProvidersSeriesSuccessState extends SeriesStates {}
 class GetWatchedProvidersSeriesErrorState extends SeriesStates {}
+
+class AddRatingSeriesLoadingState extends SeriesStates {}
+class AddRatingSeriesSuccessState extends SeriesStates {}
+class AddRatingSeriesErrorState extends SeriesStates {}

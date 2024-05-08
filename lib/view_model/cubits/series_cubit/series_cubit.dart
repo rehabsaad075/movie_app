@@ -1,4 +1,5 @@
 import 'package:dio/dio.dart';
+import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:movie_app/models/all_movies_model.dart';
 import 'package:movie_app/models/details_model.dart';
@@ -240,6 +241,26 @@ class SeriesCubit extends Cubit<SeriesStates> {
     }).catchError((error){
       if(error is DioException){
         emit(GetWatchedProvidersSeriesErrorState());
+      }
+    });
+  }
+
+  TextEditingController controller=TextEditingController();
+  Future<void>addRatingTv()async {
+    emit(AddRatingSeriesLoadingState());
+    await DioHelper.post(
+        endPoint: '${EndPoints.tv}/${detailsSeries?.id}/${EndPoints.rating}',
+        body: {
+          'value':controller.text
+        }
+    ).then((value) {
+      controller.clear();
+      showToast(msg: 'تم اضافة هذا التقييم بنجاح');
+      emit(AddRatingSeriesSuccessState());
+    }).catchError((error){
+      if(error is DioException){
+        print(error);
+        emit(AddRatingSeriesErrorState());
       }
     });
   }
