@@ -6,6 +6,7 @@ import 'package:movie_app/view/componets/widget_custom/elvated_button_custom.dar
 import 'package:movie_app/view/componets/widget_custom/fav_and_watch_item.dart';
 import 'package:movie_app/view/componets/widget_custom/image_details_custom.dart';
 import 'package:movie_app/view/screens/tv_screens/add_rating_tv_screen.dart';
+import 'package:movie_app/view/screens/tv_screens/reviews_tv_screen.dart';
 import 'package:movie_app/view_model/cubits/series_cubit/series_cubit.dart';
 import 'package:movie_app/view_model/utils/colors/app_colors.dart';
 import 'package:movie_app/view_model/utils/functions/flutterToastFunctions.dart';
@@ -81,7 +82,7 @@ class SeriesDetailsScreen extends StatelessWidget {
                             fontWeight: FontWeight.normal
                         ),
                       ),
-                      const SizedBox(width: 100,),
+                      const Spacer(),
                       TextButton(
                           onPressed: (){
                             navigationPushFunction(
@@ -106,9 +107,6 @@ class SeriesDetailsScreen extends StatelessWidget {
                       ),
                     ],
                   ),
-                  const SizedBox(
-                    height: 10,
-                  ),
                   Row(
                     children: [
                       Text(
@@ -125,10 +123,23 @@ class SeriesDetailsScreen extends StatelessWidget {
                             fontWeight: FontWeight.normal
                         ),
                       ),
+                      const Spacer(),
+                      TextButton(
+                          onPressed: (){
+                            navigationPushFunction(
+                                context: context,
+                                screen: const ReviewsTvScreen()
+                            );
+                          },
+                          child:  Text(
+                            'Reviews',
+                            style: Styles.textStyle22.copyWith(color: AppColors.appColor),
+                          )
+                      ),
                     ],
                   ),
                   const SizedBox(
-                    height: 30,
+                    height: 20,
                   ),
                   Row(
                     children: [

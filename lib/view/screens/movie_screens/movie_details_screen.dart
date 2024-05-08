@@ -9,6 +9,7 @@ import 'package:movie_app/view/componets/widget_custom/elvated_button_custom.dar
 import 'package:movie_app/view/componets/widget_custom/fav_and_watch_item.dart';
 import 'package:movie_app/view/componets/widget_custom/image_details_custom.dart';
 import 'package:movie_app/view/screens/movie_screens/add_rating_movie_screen.dart';
+import 'package:movie_app/view/screens/movie_screens/reviews_movie_screen.dart';
 import 'package:movie_app/view_model/cubits/movie_cubit/movie_cubit.dart';
 import 'package:movie_app/view_model/utils/colors/app_colors.dart';
 import 'package:movie_app/view_model/utils/functions/flutterToastFunctions.dart';
@@ -117,9 +118,6 @@ class MovieDetailsScreen extends StatelessWidget {
                       ),
                     ],
                   ),
-                  const SizedBox(
-                    height: 10,
-                  ),
                   Row(
                     children: [
                       Text(
@@ -136,10 +134,23 @@ class MovieDetailsScreen extends StatelessWidget {
                             fontWeight: FontWeight.normal
                         ),
                       ),
+                      const SizedBox(width: 70,),
+                      TextButton(
+                          onPressed: (){
+                            navigationPushFunction(
+                                context: context,
+                                screen: const ReviewsMovieScreen()
+                            );
+                          },
+                          child:  Text(
+                            'Reviews',
+                            style: Styles.textStyle22.copyWith(color: AppColors.appColor),
+                          )
+                      ),
                     ],
                   ),
                   const SizedBox(
-                    height: 30,
+                    height: 20,
                   ),
                   Row(
                     children: [
