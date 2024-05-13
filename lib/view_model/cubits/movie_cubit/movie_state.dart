@@ -64,3 +64,7 @@ class GetWatchProvidersMovieErrorState extends MovieStates {}
 class AddRatingMovieLoadingState extends MovieStates {}
 class AddRatingMovieSuccessState extends MovieStates {}
 class AddRatingMovieErrorState extends MovieStates {}
+
+class GetReviewsMovieLoadingState extends MovieStates {}
+class GetReviewsMovieSuccessState extends MovieStates {}
+class GetReviewsMovieErrorState extends MovieStates {}

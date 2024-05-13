@@ -60,3 +60,7 @@ class GetWatchedProvidersSeriesErrorState extends SeriesStates {}
 class AddRatingSeriesLoadingState extends SeriesStates {}
 class AddRatingSeriesSuccessState extends SeriesStates {}
 class AddRatingSeriesErrorState extends SeriesStates {}
+
+class GetReviewsSeriesLoadingState extends SeriesStates {}
+class GetReviewsSeriesSuccessState extends SeriesStates {}
+class GetReviewsSeriesErrorState extends SeriesStates {}

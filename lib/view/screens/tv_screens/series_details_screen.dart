@@ -126,6 +126,7 @@ class SeriesDetailsScreen extends StatelessWidget {
                       const Spacer(),
                       TextButton(
                           onPressed: (){
+                            cubit.getReviewsTv();
                             navigationPushFunction(
                                 context: context,
                                 screen: const ReviewsTvScreen()

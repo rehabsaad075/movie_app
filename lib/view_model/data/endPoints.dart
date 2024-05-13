@@ -16,6 +16,8 @@ class EndPoints{
   static const String watch='watch';
   static const String providers='providers';
   static const String rating='rating';
+  static const String reviews='reviews';
+
 
 
 }

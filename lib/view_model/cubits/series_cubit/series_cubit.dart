@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:movie_app/models/all_movies_model.dart';
 import 'package:movie_app/models/details_model.dart';
+import 'package:movie_app/models/reviews_model.dart';
 import 'package:movie_app/models/watchProvidersModels.dart';
 import 'package:movie_app/view_model/data/diohelper.dart';
 import 'package:movie_app/view_model/data/endPoints.dart';
@@ -97,7 +98,6 @@ class SeriesCubit extends Cubit<SeriesStates> {
       emit(GetSimilarSeriesSuccessState());
     }).catchError((error){
       if(error is DioException){
-        print(error);
         emit(GetSimilarSeriesErrorState());
       }
     });
@@ -259,8 +259,22 @@ class SeriesCubit extends Cubit<SeriesStates> {
       emit(AddRatingSeriesSuccessState());
     }).catchError((error){
       if(error is DioException){
-        print(error);
         emit(AddRatingSeriesErrorState());
+      }
+    });
+  }
+
+  ReviewsModel ?reviewsTv;
+  Future<void>getReviewsTv()async {
+    emit(GetReviewsSeriesLoadingState());
+    await DioHelper.get(
+        endPoint: '${EndPoints.tv}/${detailsSeries?.id}/${EndPoints.reviews}'
+    ).then((value) {
+      reviewsTv=ReviewsModel.fromJson(value.data);
+      emit(GetReviewsSeriesSuccessState());
+    }).catchError((error){
+      if(error is DioException){
+        emit(GetReviewsSeriesErrorState());
       }
     });
   }

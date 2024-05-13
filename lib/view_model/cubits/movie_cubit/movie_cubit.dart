@@ -4,6 +4,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:movie_app/models/all_movies_model.dart';
 import 'package:movie_app/models/details_model.dart';
+import 'package:movie_app/models/reviews_model.dart';
 import 'package:movie_app/models/watchProvidersModels.dart';
 import 'package:movie_app/view_model/data/diohelper.dart';
 import 'package:movie_app/view_model/data/endPoints.dart';
@@ -284,8 +285,23 @@ bool hasMoreResults=true;
       emit(AddRatingMovieSuccessState());
     }).catchError((error){
       if(error is DioException){
-        print(error);
         emit(AddRatingMovieErrorState());
+      }
+    });
+  }
+
+  ReviewsModel ?reviewsMovie;
+  Future<void>getReviewsMovie()async {
+    emit(GetReviewsMovieLoadingState());
+    await DioHelper.get(
+        endPoint: '${EndPoints.movie}/${detailsMovie?.id}/${EndPoints.reviews}'
+    ).then((value) {
+      reviewsMovie=ReviewsModel.fromJson(value.data);
+      print(reviewsMovie?.id);
+      emit(GetReviewsMovieSuccessState());
+    }).catchError((error){
+      if(error is DioException){
+        emit(GetReviewsMovieErrorState());
       }
     });
   }

@@ -137,6 +137,7 @@ class MovieDetailsScreen extends StatelessWidget {
                       const SizedBox(width: 70,),
                       TextButton(
                           onPressed: (){
+                            cubit.getReviewsMovie();
                             navigationPushFunction(
                                 context: context,
                                 screen: const ReviewsMovieScreen()
