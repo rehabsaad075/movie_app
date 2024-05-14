@@ -29,7 +29,7 @@ class MovieScreen extends StatelessWidget {
             const SizedBox(height: 10,),
             const AllMoviesSection(),
             const SizedBox(height: 30,),
-            const Text(
+             const Text(
               'افلام رائجة هذا الاسبوع',
               style: Styles.textStyle22,
             ),

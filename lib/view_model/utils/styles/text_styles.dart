@@ -9,6 +9,7 @@ abstract class Styles {
     color: AppColors.whiteColor
   );
   static const textStyle22=TextStyle(
+    color: AppColors.whiteColor,
       fontSize: 22,
       fontWeight: FontWeight.w600,
       fontFamily: 'Charm',
@@ -21,6 +22,7 @@ abstract class Styles {
   );
 
   static const textStyle30=TextStyle(
+    color: AppColors.whiteColor,
       fontSize: 30,
     fontFamily: 'Charm',
   );

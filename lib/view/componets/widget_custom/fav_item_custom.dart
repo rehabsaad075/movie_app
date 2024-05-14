@@ -60,6 +60,10 @@ class FavItemCustom extends StatelessWidget {
                 const SizedBox(height: 5,),
                  Text(
                   results.overview??'',
+                  style: Styles.textStyle18.copyWith(
+                      color: AppColors.white70,
+                      fontWeight: FontWeight.normal,
+                  ),
                   maxLines: 2,
                   overflow: TextOverflow.ellipsis,
                 ),

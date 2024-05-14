@@ -25,10 +25,6 @@ class SearchScreen extends StatelessWidget {
                 children: [
                   const SearchBarCustom(),
                   const SizedBox(height: 15,),
-                  const Text(
-                    'النتائج',
-                    style: Styles.textStyle24,
-                  ),
                   BlocBuilder<SearchCubit, SearchState>(
                     builder: (context, state) {
                       SearchCubit searchCubit=SearchCubit.get(context);

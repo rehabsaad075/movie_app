@@ -13,15 +13,8 @@ class ReviewsTvScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        backgroundColor: AppColors.backColorSplash,
-        titleSpacing: 0,
-        iconTheme: const IconThemeData(
-          color: AppColors.appColor,
-          size: 25,
-        ),
-        title: Text(
+        title: const Text(
           ' Reviews',
-          style: Styles.textStyle22.copyWith(color: AppColors.appColor),
         ),
       ),
       body: BlocBuilder<SeriesCubit, SeriesStates>(

@@ -4,7 +4,6 @@ import 'package:movie_app/models/all_movies_model.dart';
 import 'package:movie_app/view/componets/widget_custom/fav_item_custom.dart';
 import 'package:movie_app/view/screens/movie_screens/movie_details_screen.dart';
 import 'package:movie_app/view_model/cubits/movie_cubit/movie_cubit.dart';
-import 'package:movie_app/view_model/utils/colors/app_colors.dart';
 import 'package:movie_app/view_model/utils/functions/navigation_functions.dart';
 import 'package:movie_app/view_model/utils/icons/app_icons.dart';
 import 'package:movie_app/view_model/utils/styles/text_styles.dart';
@@ -18,13 +17,8 @@ class WatchedMovieScreen extends StatelessWidget {
       textDirection: TextDirection.rtl,
       child: Scaffold(
         appBar: AppBar(
-          backgroundColor: AppColors.backColorSplash,
-          iconTheme: const IconThemeData(
-              color: AppColors.appColor
-          ),
-          title: Text(
+          title: const Text(
             'قائمة الافلام',
-            style: Styles.textStyle22.copyWith(color: AppColors.appColor),
           ),
         ),
         body: BlocBuilder<MovieCubit, MovieStates>(

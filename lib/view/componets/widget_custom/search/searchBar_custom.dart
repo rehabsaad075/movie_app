@@ -12,6 +12,7 @@ class SearchBarCustom extends StatelessWidget {
       padding: const MaterialStatePropertyAll(
           EdgeInsets.symmetric(horizontal: 10)
       ),
+      backgroundColor: MaterialStatePropertyAll(AppColors.backColorSplash),
       hintText: 'البحث عن افلام ومسلسلات',
       hintStyle: const MaterialStatePropertyAll(
           TextStyle(
