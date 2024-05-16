@@ -122,6 +122,21 @@ bool hasMoreResults=true;
       }
     });
   }
+
+  DetailsModel? detailsMovieHomePage;
+  Future<void>getDetailsMovieHomePage()async {
+   emit(GetDetailsMovieHomePageLoadingState());
+    await DioHelper.get(
+        endPoint: '${EndPoints.movie}/${detailsMovie?.id}',
+    ).then((value) {
+      detailsMovieHomePage=DetailsModel.fromJson(value.data);
+      emit(GetDetailsMovieHomePageSuccessState());
+    }).catchError((error){
+      emit(GetDetailsMovieHomePageErrorState());
+    });
+  }
+
+
  bool isFavorite=false;
   Future<void> addFavMovie()async {
     emit(AddFavMovieLoadingState());
@@ -297,7 +312,6 @@ bool hasMoreResults=true;
         endPoint: '${EndPoints.movie}/${detailsMovie?.id}/${EndPoints.reviews}'
     ).then((value) {
       reviewsMovie=ReviewsModel.fromJson(value.data);
-      print(reviewsMovie?.id);
       emit(GetReviewsMovieSuccessState());
     }).catchError((error){
       if(error is DioException){

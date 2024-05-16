@@ -69,6 +69,19 @@ class SearchCubit extends Cubit<SearchState> {
     });
   }
 
+  DetailsModel? detailsHomePage;
+  Future<void>getDetailsHomePage()async {
+    emit(GetDetailsHomePageLoadingState());
+    await DioHelper.get(
+      endPoint: '${EndPoints.movie}/${detailsModel?.id}',
+    ).then((value) {
+      detailsHomePage=DetailsModel.fromJson(value.data);
+      emit(GetDetailsHomePageSuccessState());
+    }).catchError((error){
+      emit(GetDetailsHomePageErrorState());
+    });
+  }
+
   bool isFavorite=false;
   Future<void> addFavSearch()async {
     emit(AddFavSearchLoadingState());

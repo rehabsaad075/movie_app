@@ -29,3 +29,7 @@ class AddWatchedSearchErrorState extends SearchState {}
 class GetWatchProvidersSearchLoadingState extends SearchState {}
 class GetWatchProvidersSearchSuccessState extends SearchState {}
 class GetWatchProvidersSearchErrorState extends SearchState {}
+
+class GetDetailsHomePageLoadingState extends SearchState {}
+class GetDetailsHomePageSuccessState extends SearchState {}
+class GetDetailsHomePageErrorState extends SearchState {}

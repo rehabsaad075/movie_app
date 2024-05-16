@@ -58,7 +58,34 @@ class SeriesDetailsScreen extends StatelessWidget {
                   ),
                   const GenresSeriesSection(),
                   const SizedBox(
-                    height: 30,
+                    height: 20,
+                  ),
+                  Row(
+                    children: [
+                      TextButton(
+                          onPressed: () async {
+                            cubit.getDetailsTvHomePage();
+                            Uri url = Uri.parse(cubit.detailsTvHomePage?.homepage??'');
+                            if (await canLaunchUrl(url)) {
+                              await launchUrl(url);
+                            }
+                            else{
+                              showToast(msg: 'الاعلان غير متوفر حاليا');
+                            }
+                          },
+                          child: Text(
+                            'لمشاهدة الاعلان ',
+                            style: Styles.textStyle18.copyWith(
+                                color: AppColors.whiteColor,
+                                decoration: TextDecoration.underline
+                            ),
+                          )
+                      ),
+                      const Icon(
+                        AppIcons.watchedIcon,
+                        color: AppColors.whiteColor,
+                      )
+                    ],
                   ),
                   Row(
                     children: [

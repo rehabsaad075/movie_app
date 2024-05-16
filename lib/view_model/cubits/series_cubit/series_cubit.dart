@@ -120,6 +120,19 @@ class SeriesCubit extends Cubit<SeriesStates> {
       }
     });
   }
+
+  DetailsModel? detailsTvHomePage;
+  Future<void>getDetailsTvHomePage()async {
+    emit(GetDetailsSeriesHomePageLoadingState());
+    await DioHelper.get(
+      endPoint: '${EndPoints.tv}/${detailsSeries?.id}',
+    ).then((value) {
+      detailsTvHomePage=DetailsModel.fromJson(value.data);
+      emit(GetDetailsSeriesHomePageSuccessState());
+    }).catchError((error){
+      emit(GetDetailsSeriesHomePageErrorState());
+    });
+  }
   bool isFavorite=true;
   Future<void> addFavSeries()async {
     emit(AddFavSeriesLoadingState());

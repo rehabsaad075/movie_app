@@ -64,3 +64,7 @@ class AddRatingSeriesErrorState extends SeriesStates {}
 class GetReviewsSeriesLoadingState extends SeriesStates {}
 class GetReviewsSeriesSuccessState extends SeriesStates {}
 class GetReviewsSeriesErrorState extends SeriesStates {}
+
+class GetDetailsSeriesHomePageLoadingState extends SeriesStates {}
+class GetDetailsSeriesHomePageSuccessState extends SeriesStates {}
+class GetDetailsSeriesHomePageErrorState extends SeriesStates {}

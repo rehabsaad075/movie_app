@@ -69,7 +69,34 @@ class MovieDetailsScreen extends StatelessWidget {
                   ),
                   const GenresMoviesSection(),
                   const SizedBox(
-                    height: 30,
+                    height: 20,
+                  ),
+                  Row(
+                    children: [
+                      TextButton(
+                          onPressed: () async {
+                            cubit.getDetailsMovieHomePage();
+                            Uri url = Uri.parse(cubit.detailsMovieHomePage?.homepage??'');
+                            if (await canLaunchUrl(url)) {
+                            await launchUrl(url);
+                            }
+                            else{
+                            showToast(msg: 'الاعلان غير متوفر حاليا');
+                            }
+                          },
+                          child: Text(
+                            'لمشاهدة الاعلان ',
+                            style: Styles.textStyle18.copyWith(
+                                color: AppColors.whiteColor,
+                              decoration: TextDecoration.underline
+                            ),
+                          )
+                      ),
+                      const Icon(
+                        AppIcons.watchedIcon,
+                      color: AppColors.whiteColor,
+                      )
+                    ],
                   ),
                   Row(
                     children: [
@@ -150,9 +177,7 @@ class MovieDetailsScreen extends StatelessWidget {
                       ),
                     ],
                   ),
-                  const SizedBox(
-                    height: 20,
-                  ),
+                  const SizedBox(height: 10,),
                   Row(
                     children: [
                       Visibility(
@@ -199,7 +224,7 @@ class MovieDetailsScreen extends StatelessWidget {
                     ],
                   ),
                   const SizedBox(
-                    height: 30,
+                    height: 20,
                   ),
                   if((cubit.watchProviderModel?.results?.eG?.flatrate??[]).isNotEmpty)
                     ...[
