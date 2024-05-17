@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:movie_app/view/screens/account_screen/account_screen.dart';
 import 'package:movie_app/view/screens/favotite_screens/favorite_screen.dart';
 import 'package:movie_app/view/screens/home_screen.dart';
 import 'package:movie_app/view/screens/search_screen/search_screen.dart';
@@ -13,11 +14,12 @@ class AppCubit extends Cubit<AppState> {
   List<Widget>screens=const[
     SearchScreen(),
     WatchedScreen(),
+    AccountScreen(),
     FavoriteScreen(),
     HomeScreen(),
   ];
 
-  int buttonNavigationBarIndex=3;
+  int buttonNavigationBarIndex=4;
   void changeIndexButtonNavigationBar(int value){
     buttonNavigationBarIndex=value;
     emit(ChangeIndexButtonNavigationBarState());

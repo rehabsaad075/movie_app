@@ -12,6 +12,7 @@ abstract class AppIcons{
   static const IconData addIcon=Icons.add;
   static const IconData arrowIcon=Icons.arrow_forward;
   static const IconData doneIcon=Icons.done;
+  static const IconData personIcon=Icons.person;
 
 
 }
