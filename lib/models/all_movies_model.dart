@@ -44,6 +44,7 @@ class Results {
   bool? video;
   double? voteAverage;
   int? voteCount;
+  double ?rating;
 
   Results(
       {this.adult,
@@ -58,7 +59,9 @@ class Results {
         this.title,
         this.video,
         this.voteAverage,
-        this.voteCount});
+        this.voteCount,
+        this.rating
+      });
 
   Results.fromJson(Map<String, dynamic> json) {
     adult = json['adult'];
@@ -74,6 +77,7 @@ class Results {
     video = json['video'];
     voteAverage = json['vote_average'];
     voteCount = json['vote_count'];
+    rating=json['rating'];
   }
 
   Map<String, dynamic> toJson() {
@@ -91,6 +95,7 @@ class Results {
     data['video'] = video;
     data['vote_average'] = voteAverage;
     data['vote_count'] = voteCount;
+    data['rating']=rating;
     return data;
   }
 }

@@ -2,6 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:movie_app/view/componets/widget_custom/fav_and_watch_container_custom.dart';
 import 'package:movie_app/view/screens/account_screen/rating_movie_screen.dart';
 import 'package:movie_app/view/screens/account_screen/rating_tv_screen.dart';
+import 'package:movie_app/view_model/cubits/movie_cubit/movie_cubit.dart';
+import 'package:movie_app/view_model/cubits/series_cubit/series_cubit.dart';
 import 'package:movie_app/view_model/utils/functions/navigation_functions.dart';
 
 class AccountScreen extends StatelessWidget {
@@ -31,7 +33,7 @@ class AccountScreen extends StatelessWidget {
                     context: context,
                     screen:const RatingMovieScreen() ,
                   );
-                  //MovieCubit.get(context).getFavMovie();
+                  MovieCubit.get(context).getRatedMovie();
                 },
               ),
               const SizedBox(height: 15,),
@@ -42,7 +44,7 @@ class AccountScreen extends StatelessWidget {
                     context: context,
                     screen:const RatingTvScreen() ,
                   );
-                  //SeriesCubit.get(context).getFavTv();
+                  SeriesCubit.get(context).getRatedTv();
                 },
               ),
             ],

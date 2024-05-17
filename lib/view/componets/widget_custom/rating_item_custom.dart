@@ -1,12 +1,15 @@
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
+import 'package:movie_app/models/all_movies_model.dart';
+import 'package:movie_app/view_model/data/endPoints.dart';
 import 'package:movie_app/view_model/utils/colors/app_colors.dart';
 import 'package:movie_app/view_model/utils/icons/app_icons.dart';
 import 'package:movie_app/view_model/utils/styles/text_styles.dart';
 
 class RatingItemCustom extends StatelessWidget {
   final String text;
-  const RatingItemCustom({super.key, required this.text});
+  final Results results;
+  const RatingItemCustom({super.key, required this.text, required this.results});
 
   @override
   Widget build(BuildContext context) {
@@ -18,7 +21,7 @@ class RatingItemCustom extends StatelessWidget {
             height: 120,
             width: 120,
             child: CachedNetworkImage(
-              imageUrl: 'https://image.tmdb.org/t/p/w500/pB8BM7pdSp6B6Ih7QZ4DrQ3PmJK.jpg',
+              imageUrl: '${EndPoints.imageUrl}/${results.posterPath}',
               fit: BoxFit.fill,
               placeholder: (context, url) =>
                   Container(
@@ -36,66 +39,66 @@ class RatingItemCustom extends StatelessWidget {
           ),
         ),
         const SizedBox(width: 15,),
-        Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            Text(
-              'Fight Club',
-              style: Styles.textStyle20.copyWith(color: AppColors.whiteColor),
-            ),
-            const SizedBox(height: 5,),
-            Row(
-              children: [
-                Text(
-                  text,
-                  style: Styles.textStyle18.copyWith(
-                      color: AppColors.white70,
-                      fontWeight: FontWeight.normal
+        Expanded(
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              Text(
+                results.originalTitle??'',
+                style: Styles.textStyle20.copyWith(color: AppColors.whiteColor),
+              ),
+              const SizedBox(height: 5,),
+              Row(
+                children: [
+                  Text(
+                    text,
+                    style: Styles.textStyle18.copyWith(
+                        color: AppColors.white70,
+                        fontWeight: FontWeight.normal
+                    ),
                   ),
-                ),
-                const SizedBox(width: 10,),
-                const Icon(
-                  AppIcons.starIcon,
-                  color: AppColors.appColor,
-                  size: 18,
-                ),
-                const SizedBox(width: 3,),
-                Text(
-                  '7.2',
-                 // cubit.detailsMovie?.voteAverage?.toStringAsFixed(1).toString()??'',
-                  style: Styles.textStyle18.copyWith(
-                      fontWeight: FontWeight.normal
+                  const SizedBox(width: 10,),
+                  const Icon(
+                    AppIcons.starIcon,
+                    color: AppColors.appColor,
+                    size: 18,
                   ),
-                ),
-              ],
-            ),
-            const SizedBox(height: 5,),
-            Row(
-              children: [
-                Text(
-                  'تقييمك ',
-                  style: Styles.textStyle18.copyWith(
-                      color: AppColors.white70,
-                      fontWeight: FontWeight.normal
+                  const SizedBox(width: 3,),
+                  Text(
+                    results.voteAverage?.toStringAsFixed(1).toString()??'',
+                    style: Styles.textStyle18.copyWith(
+                        fontWeight: FontWeight.normal
+                    ),
                   ),
-                ),
-                const SizedBox(width: 10,),
-                const Icon(
-                  AppIcons.starIcon,
-                  color: AppColors.appColor,
-                  size: 18,
-                ),
-                const SizedBox(width: 3,),
-                Text(
-                  '6.2',
-                  // cubit.detailsMovie?.voteAverage?.toStringAsFixed(1).toString()??'',
-                  style: Styles.textStyle18.copyWith(
-                      fontWeight: FontWeight.normal
+                ],
+              ),
+              const SizedBox(height: 5,),
+              Row(
+                children: [
+                  Text(
+                    'تقييمك ',
+                    style: Styles.textStyle18.copyWith(
+                        color: AppColors.white70,
+                        fontWeight: FontWeight.normal
+                    ),
                   ),
-                ),
-              ],
-            ),
-          ],
+                  const SizedBox(width: 10,),
+                  const Icon(
+                    AppIcons.starIcon,
+                    color: AppColors.appColor,
+                    size: 18,
+                  ),
+                  const SizedBox(width: 3,),
+                  Text(
+                    results.rating?.toStringAsFixed(1).toString()??'',
+                    style: Styles.textStyle18.copyWith(
+                        fontWeight: FontWeight.normal
+                    ),
+                  ),
+                ],
+              ),
+            ],
+          ),
         )
       ],
     );

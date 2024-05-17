@@ -277,6 +277,19 @@ class SeriesCubit extends Cubit<SeriesStates> {
     });
   }
 
+  AllMoviesModel? ratedTv;
+  Future<void>getRatedTv()async {
+    emit(GetRatedSeriesLoadingState());
+    await DioHelper.get(
+        endPoint: '${EndPoints.account}/21091525/${EndPoints.rated}/${EndPoints.tv}'
+    ).then((value) {
+      ratedTv=AllMoviesModel.fromJson(value.data);
+      emit(GetRatedSeriesSuccessState());
+    }).catchError((error){
+      emit(GetRatedSeriesErrorState());
+    });
+  }
+
   ReviewsModel ?reviewsTv;
   Future<void>getReviewsTv()async {
     emit(GetReviewsSeriesLoadingState());

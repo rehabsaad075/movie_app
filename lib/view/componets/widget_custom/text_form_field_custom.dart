@@ -10,6 +10,9 @@ class TextFormFieldCustom extends StatelessWidget {
     return TextFormField(
       cursorColor: AppColors.appColor,
       controller: controller,
+      style: const TextStyle(
+        color: AppColors.appColor
+      ),
       decoration: InputDecoration(
         labelText: 'اضافة تقييم',
         labelStyle:  const TextStyle(

@@ -305,6 +305,19 @@ bool hasMoreResults=true;
     });
   }
 
+  AllMoviesModel? ratedMovie;
+  Future<void>getRatedMovie()async {
+    emit(GetRatedMovieLoadingState());
+    await DioHelper.get(
+        endPoint: '${EndPoints.account}/21091525/${EndPoints.rated}/${EndPoints.movies}'
+    ).then((value) {
+      ratedMovie=AllMoviesModel.fromJson(value.data);
+      emit(GetRatedMovieSuccessState());
+    }).catchError((error){
+      emit(GetRatedMovieErrorState());
+    });
+  }
+
   ReviewsModel ?reviewsMovie;
   Future<void>getReviewsMovie()async {
     emit(GetReviewsMovieLoadingState());

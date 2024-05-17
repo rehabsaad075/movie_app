@@ -17,6 +17,7 @@ class EndPoints{
   static const String providers='providers';
   static const String rating='rating';
   static const String reviews='reviews';
+  static const String rated='rated';
 
 
 
