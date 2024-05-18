@@ -42,7 +42,10 @@ class AddRatingMovieScreen extends StatelessWidget {
                     visible:state is AddRatingMovieLoadingState,
                     replacement:  ElevatedButtonCustom(
                       onPressed: () {
-                        MovieCubit.get(context).addRatingMovie();
+                        MovieCubit.get(context).addRatingMovie()
+                            .then((value) {
+                          Navigator.pop(context);
+                        });
                       },
                       child: const Text(
                         'اضافة تقييم',

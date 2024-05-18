@@ -87,7 +87,7 @@ class DioHelper {
   }) async {
     try {
       dio?.options.headers={
-        "Authorization":"Bearer $token"
+        "Authorization": "Bearer eyJhbGciOiJIUzI1NiJ9.eyJhdWQiOiI3ZjViMzBiYmEzZmU2MTFmNTA5NGMxMzdiOGJiYTk5OCIsInN1YiI6IjY1ZWY4OTcxYTM1YzhlMDE2MzljMWNjNyIsInNjb3BlcyI6WyJhcGlfcmVhZCJdLCJ2ZXJzaW9uIjoxfQ.0whhQjm-dGY2Ip0-gxDP24fsaR8BgPkKfxoH0V_vCpg"
       };
       Response? response =await dio?.delete(
         endPoint,

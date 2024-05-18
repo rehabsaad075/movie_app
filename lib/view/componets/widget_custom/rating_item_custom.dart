@@ -1,6 +1,7 @@
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:movie_app/models/all_movies_model.dart';
+import 'package:movie_app/view_model/cubits/movie_cubit/movie_cubit.dart';
 import 'package:movie_app/view_model/data/endPoints.dart';
 import 'package:movie_app/view_model/utils/colors/app_colors.dart';
 import 'package:movie_app/view_model/utils/functions/alertDialog_function.dart';
@@ -10,7 +11,15 @@ import 'package:movie_app/view_model/utils/styles/text_styles.dart';
 class RatingItemCustom extends StatelessWidget {
   final String text;
   final Results results;
-  const RatingItemCustom({super.key, required this.text, required this.results});
+  final int currentIndex;
+  final void Function()? onPressedDelete;
+  const RatingItemCustom({
+    super.key,
+    required this.text,
+    required this.results,
+    required this.currentIndex,
+    required this.onPressedDelete,
+  });
 
   @override
   Widget build(BuildContext context) {
@@ -99,12 +108,13 @@ class RatingItemCustom extends StatelessWidget {
                   const Spacer(),
                   IconButton(
                       onPressed: (){
+                        MovieCubit.get(context).changeMovieIndex(currentIndex);
                         alertDialogFunction(
                             context: context,
                             title: 'حذف التقييم',
                             subTitle: 'هل تريد بالفعل حذف تقييمك',
                             textValueButton: 'حذف',
-                            onPressed: () {  }
+                            onPressed: onPressedDelete
                         );
                       },
                       icon: const Icon(

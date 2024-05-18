@@ -23,6 +23,12 @@ class RatingMovieScreen extends StatelessWidget {
                 return  RatingItemCustom(
                   text: 'تقييم الفيلم',
                   results: movieCubit.ratedMovie?.results?[index]??Results(),
+                  currentIndex: index,
+                  onPressedDelete: () {
+                    movieCubit.deleteRatingMovie().then((value) {
+                      Navigator.pop(context);
+                    });
+                  },
                 );
               },
               separatorBuilder: (BuildContext context, int index) {

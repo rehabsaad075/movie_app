@@ -42,7 +42,10 @@ class AddRatingTvScreen extends StatelessWidget {
                     visible:state is AddRatingSeriesLoadingState,
                     replacement:  ElevatedButtonCustom(
                       onPressed: () {
-                        SeriesCubit.get(context).addRatingTv();
+                        SeriesCubit.get(context).addRatingTv()
+                            .then((value) {
+                          Navigator.pop(context);
+                        });
                       },
                       child: const Text(
                         'اضافة تقييم',

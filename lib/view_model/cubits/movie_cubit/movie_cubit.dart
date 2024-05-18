@@ -318,6 +318,18 @@ bool hasMoreResults=true;
     });
   }
 
+  Future<void>deleteRatingMovie()async {
+    await DioHelper.delete(
+        endPoint: '${EndPoints.movie}/${ratedMovie?.results?[currentMovieIndex].id}/${EndPoints.rating}'
+    ).then((value) {
+      showToast(msg: 'تم حذف العنصر بنجاح.');
+      getRatedMovie();
+      emit(DeleteRatingMovieSuccessState());
+    }).catchError((error){
+      emit(DeleteRatingMovieErrorState());
+    });
+  }
+
   ReviewsModel ?reviewsMovie;
   Future<void>getReviewsMovie()async {
     emit(GetReviewsMovieLoadingState());

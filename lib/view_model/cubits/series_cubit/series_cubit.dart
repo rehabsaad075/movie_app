@@ -290,6 +290,18 @@ class SeriesCubit extends Cubit<SeriesStates> {
     });
   }
 
+  Future<void>deleteRatingTv()async {
+    await DioHelper.delete(
+        endPoint: '${EndPoints.tv}/${ratedTv?.results?[currentSeriesIndex].id}/${EndPoints.rating}'
+    ).then((value) {
+      showToast(msg: 'تم حذف العنصر بنجاح.');
+      getRatedTv();
+      emit(DeleteRatedSeriesSuccessState());
+    }).catchError((error){
+      emit(DeleteRatedSeriesErrorState());
+    });
+  }
+
   ReviewsModel ?reviewsTv;
   Future<void>getReviewsTv()async {
     emit(GetReviewsSeriesLoadingState());

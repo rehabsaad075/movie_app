@@ -22,6 +22,12 @@ class RatingTvScreen extends StatelessWidget {
                 return RatingItemCustom(
                   text: 'تقييم المسلسل',
                   results: seriesCubit.ratedTv?.results?[index]??Results(),
+                  currentIndex: index,
+                  onPressedDelete: () {
+                    seriesCubit.deleteRatingTv().then((value) {
+                      Navigator.pop(context);
+                    });
+                  },
                 );
               },
               separatorBuilder: (BuildContext context, int index) {
