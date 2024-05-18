@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:movie_app/models/all_movies_model.dart';
 import 'package:movie_app/view_model/data/endPoints.dart';
 import 'package:movie_app/view_model/utils/colors/app_colors.dart';
+import 'package:movie_app/view_model/utils/functions/alertDialog_function.dart';
 import 'package:movie_app/view_model/utils/icons/app_icons.dart';
 import 'package:movie_app/view_model/utils/styles/text_styles.dart';
 
@@ -95,6 +96,22 @@ class RatingItemCustom extends StatelessWidget {
                         fontWeight: FontWeight.normal
                     ),
                   ),
+                  const Spacer(),
+                  IconButton(
+                      onPressed: (){
+                        alertDialogFunction(
+                            context: context,
+                            title: 'حذف التقييم',
+                            subTitle: 'هل تريد بالفعل حذف تقييمك',
+                            textValueButton: 'حذف',
+                            onPressed: () {  }
+                        );
+                      },
+                      icon: const Icon(
+                          AppIcons.deleteIcon,
+                        color: AppColors.appColor,
+                      )
+                  )
                 ],
               ),
             ],
